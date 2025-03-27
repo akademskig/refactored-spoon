@@ -6,7 +6,10 @@ import { Article } from '../types/Article';
 
 export const getArticles = async (req: Request, res: Response) => {
   try {
-    let articles = getCache<Article[]>(ARTICLES_CACHE_KEY);
+    const { page = 1, q = '', forceRefresh = 'false' } = req.query;
+    const shouldForceRefresh = forceRefresh === 'true';
+
+    let articles = shouldForceRefresh ? null : getCache<Article[]>(ARTICLES_CACHE_KEY);
     if (!articles) {
       const [newsApi, nyt] = await Promise.all([fetchNewsApiArticles(), fetchNYTArticles()]);
       // lates articles first
@@ -16,7 +19,6 @@ export const getArticles = async (req: Request, res: Response) => {
       setCache(ARTICLES_CACHE_KEY, articles, 300);
     }
 
-    const { page = 1, q = '' } = req.query;
     const filtered = articles.filter((a) =>
       a.title.toLowerCase().includes((q as string).toLowerCase()),
     );
