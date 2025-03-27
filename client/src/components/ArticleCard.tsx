@@ -1,4 +1,4 @@
-import { Article } from "../types/Article";
+import { Article } from '../types/Article';
 
 type Props = {
   article: Article;

@@ -12,10 +12,7 @@ const Sidebar = ({ categories, selected, onSelect }: Props) => {
         <ul>
           {categories.map((c) => (
             <li key={c}>
-              <button
-                className={selected === c ? 'active' : ''}
-                onClick={() => onSelect(c)}
-              >
+              <button className={selected === c ? 'active' : ''} onClick={() => onSelect(c)}>
                 {c}
               </button>
             </li>
