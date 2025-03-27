@@ -1,1 +1,1 @@
-export const ALL_CATEGORIES = 'Home';
+export const ALL_CATEGORIES = 'home';
