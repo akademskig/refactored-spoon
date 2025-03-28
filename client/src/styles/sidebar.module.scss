@@ -1,5 +1,16 @@
 @use './variables.scss' as *;
 
+$color-border: #ddd;
+$color-text: #666;
+$color-accent: #d40000;
+$color-hover: #fff;
+
+$sidebar-width: 64px;
+$icon-size: 1.5rem;
+$font-size-label: 0.75rem;
+$padding-vertical: 1rem;
+$gap: 1rem;
+
 .sidebar {
   width: $sidebar-width;
   padding: $padding-vertical 0;

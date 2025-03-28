@@ -1,5 +1,12 @@
 @use './variables' as *;
 
+$border-radius: 12px;
+$box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+$transition-duration: 0.2s;
+$image-height: 160px;
+$margin-small: 0.25rem;
+$margin-medium: 0.5rem;
+
 .articleCard {
   display: flex;
   flex-direction: column;
