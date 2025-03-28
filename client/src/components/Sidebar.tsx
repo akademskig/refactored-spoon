@@ -11,6 +11,7 @@ import {
   Clapperboard,
   Earth,
   MessageSquare,
+  Podcast,
 } from 'lucide-react';
 import styles from '../styles/sidebar.module.scss';
 
@@ -26,6 +27,7 @@ const ICONS: Record<string, JSX.Element> = {
   movies: <Clapperboard />,
   world: <Earth />,
   opinion: <MessageSquare />,
+  podcasts: <Podcast />,
 };
 
 type Props = {
