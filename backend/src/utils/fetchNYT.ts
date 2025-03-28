@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Article } from '../types/Article';
 
 // Constants
 const DEFAULT_CATEGORY = 'General';
@@ -7,13 +8,13 @@ const IMAGE_FORMAT = 'threeByTwoSmallAt2X';
 const NYT_API_URL = 'https://api.nytimes.com/svc/topstories/v2/home.json';
 
 // Utility Functions
-const generateDefaultImageUrl = (seed: string): string =>
+const getDefaultImageUrl = (seed: string): string =>
   `https://picsum.photos/seed/nyt${seed}/400/200`;
 
 const formatAuthor = (byline: string | undefined): string =>
   byline?.replace(/^By\s+/i, '') || DEFAULT_AUTHOR;
 
-const mapArticle = (article: any): Record<string, any> => {
+const mapArticle = (article: any): Article => {
   const multimedia = article.multimedia?.find((m: any) => m.format === IMAGE_FORMAT);
   return {
     id: `nyt_${article.url}`,
@@ -21,12 +22,12 @@ const mapArticle = (article: any): Record<string, any> => {
     abstract: article.abstract,
     published_date: article.published_date,
     category: article.section || DEFAULT_CATEGORY,
-    image: multimedia?.url || generateDefaultImageUrl(Math.random().toString()),
+    image: multimedia?.url || getDefaultImageUrl(Math.random().toString()),
     author: formatAuthor(article.byline),
   };
 };
 
-export const fetchNYTArticles = async (): Promise<Record<string, any>[]> => {
+export const fetchNYTArticles = async (): Promise<Article[]> => {
   try {
     const res = await axios.get(`${NYT_API_URL}?api-key=${process.env.NYT_API_KEY}`);
     return res.data.results.map(mapArticle);
