@@ -13,25 +13,15 @@ const Home = () => {
 
   if (!articles.length) return <p>Loading...</p>;
 
-  if (selectedCategory === ALL_CATEGORIES) {
-    return (
-      <section>
-        <h2>{selectedCategory}</h2>
-        {articles.map((article) => (
-          <ArticleCard key={article.id} article={article} />
-        ))}
-      </section>
-    );
-  }
-
-  const filtered = articles.filter((a) => a.category === selectedCategory);
+  const filtered = articles.filter((a) =>
+    selectedCategory === ALL_CATEGORIES ? a : a.category === selectedCategory,
+  );
   return (
-    <section>
-      <h2>{selectedCategory}</h2>
-      {filtered.map((article) => (
-        <ArticleCard key={article.id} article={article} />
+    <>
+      {filtered.map((a) => (
+        <ArticleCard key={a.id} article={a} />
       ))}
-    </section>
+    </>
   );
 };
 

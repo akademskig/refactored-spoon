@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 import api from '../services/api';
 import { Article } from '../types/Article';
 import { ALL_CATEGORIES } from '../constants';
+import styles from '../styles/layout.module.scss';
+import LatestNewsWidget from './LatestNewsWidget';
 
 const Layout = () => {
   const [articles, setArticles] = useState<Article[]>([]);
@@ -23,10 +25,12 @@ const Layout = () => {
   }, []);
 
   return (
-    <div className="layout">
+    <div className={styles.layout}>
+      {/* <Header /> */}
       <Sidebar categories={categories} selected={selectedCategory} onSelect={setSelectedCategory} />
-      <main>
+      <main className={styles.mainContent}>
         <Outlet context={{ articles, selectedCategory }} />
+        <LatestNewsWidget />
       </main>
     </div>
   );

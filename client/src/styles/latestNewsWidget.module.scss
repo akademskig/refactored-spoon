@@ -1,0 +1,43 @@
+@use './variables' as *;
+
+.root {
+  background: $color-bg-light;
+  border-radius: $border-radius;
+  padding: $padding;
+  overflow-y: auto;
+  grid-column-start: 3;
+  grid-row-start: 1;
+  grid-row-end: 3;
+
+  h3 {
+    font-size: $font-size-large;
+    margin-bottom: $margin-bottom;
+    display: flex;
+    align-items: center;
+    gap: $gap-small;
+
+    .dot {
+      width: $dot-size;
+      height: $dot-size;
+      background: $red;
+      border-radius: 50%;
+      display: inline-block;
+    }
+  }
+
+  li {
+    list-style: none;
+    margin-bottom: $margin-bottom;
+
+    span {
+      color: $blue;
+      font-size: $font-size-small;
+    }
+
+    p {
+      margin: 0;
+      font-size: $font-size-medium;
+      color: $black;
+    }
+  }
+}
