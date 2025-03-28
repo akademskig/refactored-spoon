@@ -24,7 +24,7 @@
   }
 
   .content {
-    padding: 0 $padding;
+    padding: 0 $padding-lg;
     overflow: hidden;
     display: flex;
     flex-grow: 1;
@@ -50,12 +50,18 @@
       line-clamp: 2;
       overflow: hidden;
       text-overflow: ellipsis;
+      @include respond-md {
+        font-size: $font-size-medium;
+      }
     }
 
     .author {
       font-size: $font-size-small;
       color: $gray;
       margin-top: auto;
+      @include respond-md {
+        font-size: $font-size-small;
+      }
     }
   }
 }

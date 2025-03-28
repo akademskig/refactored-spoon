@@ -3,11 +3,14 @@
 .root {
   background: $color-bg-light;
   border-radius: $border-radius;
-  padding: $padding;
+  padding: $padding-md;
   overflow-y: auto;
   grid-column-start: 3;
   grid-row-start: 1;
   grid-row-end: 3;
+  @include respond-md {
+    display: none;
+  }
 
   h3 {
     font-size: $font-size-large;
