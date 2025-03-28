@@ -1,0 +1,57 @@
+@use '../styles/variables' as *;
+
+$color-border: #ddd;
+$button-border-radius: 6px;
+
+.header {
+  width: 100%;
+  background: #fff;
+  box-sizing: border-box;
+  border-bottom: 1px solid $color-border;
+  display: flex;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background-color: transparent;
+  flex-wrap: nowrap;
+
+  .logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: $red;
+    margin-right: 2rem;
+
+    span {
+      color: #000;
+      font-weight: 600;
+    }
+  }
+
+  .searchWrapper {
+    display: flex;
+    width: 100%;
+    max-width: 725px;
+    padding: 0.35rem;
+    background-color: $white;
+    border-radius: $button-border-radius;
+
+    input {
+      flex: 1;
+      padding: 0.5rem 1rem;
+      border: none;
+      font-size: 0.875rem;
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .searchBtn {
+      background: $red;
+      color: $white;
+      border: none;
+      padding: 0 1rem;
+      border-radius: $button-border-radius;
+      cursor: pointer;
+      font-weight: 600;
+    }
+  }
+}

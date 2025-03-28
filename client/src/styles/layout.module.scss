@@ -1,11 +1,14 @@
 @use './variables' as *;
 
+.container {
+  max-width: 1150px;
+  margin: auto;
+}
+
 .layout {
   display: flex;
   background: $color-bg-gray;
   min-height: 100vh;
-  max-width: 1150px;
-  margin: auto;
   align-items: flex-start;
 }
 
