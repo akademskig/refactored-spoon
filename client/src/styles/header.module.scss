@@ -2,6 +2,7 @@
 
 $color-border: #ddd;
 $button-border-radius: 6px;
+$input-gray: rgb(192, 189, 189);
 
 .header {
   width: 100%;
@@ -31,8 +32,11 @@ $button-border-radius: 6px;
     width: 100%;
     max-width: 725px;
     padding: 0.35rem;
+    padding-left: 0.7rem;
     background-color: $white;
     border-radius: $button-border-radius;
+    justify-content: center;
+    align-items: center;
 
     input {
       flex: 1;
@@ -42,16 +46,26 @@ $button-border-radius: 6px;
       &:focus {
         outline: none;
       }
+      &::placeholder {
+        color: $input-gray;
+        font-size: 0.875rem;
+      }
     }
 
     .searchBtn {
       background: $red;
       color: $white;
       border: none;
-      padding: 0 1rem;
+      padding: 0.6rem 1rem;
       border-radius: $button-border-radius;
       cursor: pointer;
       font-weight: 600;
+    }
+    .searchIcon {
+      color: $input-gray;
+      svg {
+        width: 1.1rem;
+      }
     }
   }
 }

@@ -1,36 +1,45 @@
 import { Outlet } from 'react-router-dom';
+import { useEffect, useState, useCallback } from 'react';
 import Sidebar from './Sidebar';
-import { useEffect, useState } from 'react';
+import Header from './Header';
+import Banner from './TopBanner';
+import LatestNewsWidget from './LatestNewsWidget';
 import api from '../services/api';
 import { Article } from '../types/Article';
 import { ALL_CATEGORIES } from '../constants';
 import styles from '../styles/layout.module.scss';
-import LatestNewsWidget from './LatestNewsWidget';
-import Header from './Header';
-import Banner from './TopBanner';
 
 const Layout = () => {
   const [articles, setArticles] = useState<Article[]>([]);
   const [categories, setCategories] = useState<string[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>(ALL_CATEGORIES);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  // Fetch articles and categories
+  const fetchArticles = useCallback(async () => {
+    try {
+      const res = await api.get('/articles');
+      const fetchedArticles = res.data;
+      setArticles(fetchedArticles);
+
+      const uniqueCategories: string[] = Array.from(
+        new Set(fetchedArticles.map((article: Article) => article.category || 'General'))
+      );
+      setCategories([ALL_CATEGORIES, ...uniqueCategories]);
+    } catch (error) {
+      console.error('Error fetching articles:', error);
+    }
+  }, []);
 
   useEffect(() => {
-    const fetchArticles = async () => {
-      const res = await api.get('/articles');
-      setArticles(res.data);
-      const cats: string[] = Array.from(
-        new Set(res.data.map((a: Article) => a.category || 'General')),
-      );
-      setCategories([ALL_CATEGORIES, ...cats]);
-    };
     fetchArticles();
-  }, []);
+  }, [fetchArticles]);
 
   return (
     <>
       <Banner />
       <div className={styles.container}>
-        <Header />
+        <Header onSearch={setSearchQuery} />
         <div className={styles.layout}>
           <Sidebar
             categories={categories}
@@ -38,7 +47,7 @@ const Layout = () => {
             onSelect={setSelectedCategory}
           />
           <main className={styles.mainContent}>
-            <Outlet context={{ articles, selectedCategory }} />
+            <Outlet context={{ articles, selectedCategory, searchQuery }} />
             <LatestNewsWidget />
           </main>
         </div>

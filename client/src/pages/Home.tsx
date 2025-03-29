@@ -6,20 +6,32 @@ import { ALL_CATEGORIES } from '../constants';
 type Context = {
   articles: Article[];
   selectedCategory: string;
+  searchQuery: string;
 };
 
 const Home = () => {
-  const { articles, selectedCategory } = useOutletContext<Context>();
+  const { articles, selectedCategory, searchQuery } = useOutletContext<Context>();
+
+  // Filter articles by category and search query
+  const getFilteredArticles = () => {
+    return articles.filter((article) => {
+      const matchesCategory =
+        selectedCategory === ALL_CATEGORIES || article.category === selectedCategory;
+      const matchesSearchQuery = searchQuery
+        ? article.title.toLowerCase().includes(searchQuery.toLowerCase())
+        : true;
+      return matchesCategory && matchesSearchQuery;
+    });
+  };
+
+  const filteredArticles = getFilteredArticles();
 
   if (!articles.length) return <p>Loading...</p>;
 
-  const filtered = articles.filter((a) =>
-    selectedCategory === ALL_CATEGORIES ? a : a.category === selectedCategory,
-  );
   return (
     <>
-      {filtered.map((a) => (
-        <ArticleCard key={a.id} article={a} />
+      {filteredArticles.map((article) => (
+        <ArticleCard key={article.id} article={article} />
       ))}
     </>
   );
