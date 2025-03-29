@@ -1,53 +1,139 @@
 @use './variables' as *;
 
 $max-width-widget: 360px;
-$padding-md: 0.75rem;
-$border-radius: 12px;
-$dot-size: 10px;
+$border-radius-root: 12px;
+$dot-size: 22px;
 $gap-small: 0.5rem;
 $margin-bottom: 1rem;
+$box-shadow-root: 0 1px 3px rgba(0, 0, 0, 0.05);
+$border: 1px solid #eee;
+$padding-list: 0.8rem;
+$padding-root: 1.5rem 0.2rem 0.65rem 1.5rem;
+$font-size-time: 0.6rem;
 
 .root {
   background: $color-bg-light;
-  border-radius: $border-radius;
-  padding: $padding-md;
-  overflow-y: auto;
+  border-radius: $border-radius-root;
+  display: flex;
+  flex-direction: column;
   grid-column-start: 3;
   grid-row-start: 1;
   grid-row-end: 3;
+  max-height: 560px;
+  box-shadow: $box-shadow-root;
+  border: $border;
+  padding: $padding-root;
+
   @include respond-md {
     display: none;
   }
 
+  .scrollArea {
+    overflow-y: auto;
+    margin: 0;
+    padding: 0;
+  }
   h3 {
     font-size: $font-size-large;
     margin-bottom: $margin-bottom;
+    margin-top: 0;
     display: flex;
     align-items: center;
     gap: $gap-small;
 
-    .dot {
+    .dotOuter {
       width: $dot-size;
       height: $dot-size;
-      background: $red;
+      background-color: rgba($red-rgb, 0.3);
       border-radius: 50%;
-      display: inline-block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: fadeInOut 2s infinite ease-in-out;
+    }
+    .dotInner {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background-color: rgba($red-rgb, 1);
     }
   }
 
   li {
     list-style: none;
-    margin-bottom: $margin-bottom;
+    padding: $padding-list 0;
+    border-bottom: $border;
 
     span {
+      font-weight: 600;
       color: $blue;
-      font-size: $font-size-small;
+      font-size: $font-size-time;
+      display: block;
+      margin-bottom: 0.25rem;
     }
 
     p {
       margin: 0;
-      font-size: $font-size-medium;
+      font-size: $font-size-large;
+      font-weight: 500;
       color: $black;
+      line-height: 1.4;
+      &:hover {
+        color: $red;
+      }
     }
+    &:last-child {
+      border-bottom: none;
+    }
+    &:hover {
+      color: $red;
+      cursor: pointer;
+    }
+  }
+  .footer {
+    margin-top: auto;
+    padding-top: 0.5rem;
+    border-top: 1px solid #eee;
+
+    a {
+      font-size: 0.8rem;
+      color: $blue;
+      font-weight: 500;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  .scrollTrigger {
+    height: 1px;
+    margin-bottom: 5px;
+  }
+}
+.scrollArea::-webkit-scrollbar {
+  width: 4px;
+  background: transparent;
+}
+.scrollArea::-webkit-scrollbar-thumb {
+  background: rgb(189, 188, 188);
+  border-radius: 3px;
+}
+.scrollArea::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollArea::-webkit-scrollbar-corner {
+  background: transparent;
+}
+.scrollArea::-webkit-scrollbar-button {
+  background: transparent;
+}
+
+@keyframes fadeInOut {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
   }
 }
