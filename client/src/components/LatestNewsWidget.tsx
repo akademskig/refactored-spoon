@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import api from '../services/api';
 import styles from '../styles/latestNewsWidget.module.scss';
 
@@ -17,22 +17,25 @@ const LatestNewsWidget = () => {
   const [hasMore, setHasMore] = useState(true);
   const observerRef = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
-    const fetch = async () => {
-      try {
-        const res = await api.get('/articles', {
-          params: { page },
-        });
-
-        if (res.data.length === 0) setHasMore(false);
-        else setLatest((prev) => [...prev, ...res.data]);
-      } catch (err) {
-        console.error('Failed to fetch latest news', err);
+  // Fetch articles
+  const fetchArticles = useCallback(async () => {
+    try {
+      const res = await api.get('/articles', { params: { page } });
+      if (res.data.length === 0) {
+        setHasMore(false);
+      } else {
+        setLatest((prev) => [...prev, ...res.data]);
       }
-    };
-    fetch();
+    } catch (err) {
+      console.error('Failed to fetch latest news', err);
+    }
   }, [page]);
 
+  useEffect(() => {
+    fetchArticles();
+  }, [fetchArticles]);
+
+  // Infinite scrolling logic
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -56,18 +59,18 @@ const LatestNewsWidget = () => {
         {title}
       </h3>
       <ul className={styles.scrollArea}>
-        {latest.map((n) => (
-          <li key={n.id}>
+        {latest.map((article) => (
+          <li key={article.id}>
             <span>
-              {new Date(n.published_date).toLocaleTimeString([], {
+              {new Date(article.published_date).toLocaleTimeString([], {
                 hour: '2-digit',
                 minute: '2-digit',
               })}
             </span>
-            <p>{n.title}</p>
+            <p>{article.title}</p>
           </li>
         ))}
-        <div ref={observerRef} className={styles.scrollTrigger} />
+        {hasMore && <div ref={observerRef} className={styles.scrollTrigger} />}
       </ul>
 
       <div className={styles.footer}>
