@@ -8,7 +8,13 @@
   justify-content: space-between;
   align-items: center;
   font-size: 0.875rem;
-
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+  &.closing {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
   .bannerText {
     min-width: 50%;
     display: flex;
@@ -20,19 +26,19 @@
       margin-right: 1rem;
     }
   }
-  .ctaButtons {
+  .buttons {
     display: flex;
     gap: 0.5rem;
 
-    .link {
+    .noBtn {
       background: none;
       border: none;
-      color: #fff;
+      color: $white;
       font-size: 0.75rem;
       cursor: pointer;
     }
 
-    .primary {
+    .getBtn {
       background: #fff;
       color: #d40000;
       font-weight: 600;
