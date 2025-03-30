@@ -1,0 +1,63 @@
+@use './variables' as *;
+
+.authForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  .formTitle {
+    font-size: 1.2rem;
+    text-align: center;
+    margin-bottom: auto;
+  }
+  input {
+    padding: 0.75rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+
+    &:focus {
+      border-color: #d40000;
+    }
+
+    &::placeholder {
+      color: #aaa;
+    }
+  }
+
+  button[type='submit'] {
+    padding: 0.75rem 1rem;
+    background-color: $red;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+
+    &:hover {
+      background-color: rgba($red-rgb, 90%);
+    }
+  }
+
+  .error {
+    color: #d40000;
+    font-size: 0.85rem;
+    margin: 0;
+  }
+  .switch {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+
+    span:hover {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+}

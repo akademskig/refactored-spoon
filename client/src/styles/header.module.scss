@@ -14,17 +14,9 @@ $input-gray: rgb(192, 189, 189);
   padding: 1rem 1.5rem;
   background-color: transparent;
   flex-wrap: nowrap;
-
+  gap: 1rem;
   .logo {
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: $red;
     margin-right: 2rem;
-
-    span {
-      color: #000;
-      font-weight: 600;
-    }
   }
 
   .searchWrapper {

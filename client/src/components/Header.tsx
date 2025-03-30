@@ -1,6 +1,9 @@
 import { useState, useCallback } from 'react';
 import styles from '../styles/header.module.scss';
 import { Search } from 'lucide-react';
+import { useAuthModal } from '../hooks/useAuthModal';
+import Logo from './Logo';
+import { ModalViewEnum } from '../types/ModalViewEnum';
 
 type Props = {
   onSearch: (query: string) => void;
@@ -8,7 +11,7 @@ type Props = {
 
 const Header = ({ onSearch }: Props) => {
   const [input, setInput] = useState('');
-
+  const { open } = useAuthModal();
   // Handle input change with useCallback for optimization
   const handleSetInput = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,9 +35,7 @@ const Header = ({ onSearch }: Props) => {
 
   return (
     <header className={styles.header}>
-      <h1 className={styles.logo}>
-        My<span>News</span>
-      </h1>
+      <Logo />
       <form className={styles.searchWrapper} onSubmit={handleSubmit}>
         <span className={styles.searchIcon}>
           <Search />
@@ -44,6 +45,7 @@ const Header = ({ onSearch }: Props) => {
           Search
         </button>
       </form>
+      <button onClick={() => open(ModalViewEnum.SIGNIN)}>Sign In</button>
     </header>
   );
 };
