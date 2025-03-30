@@ -61,3 +61,13 @@ $input-gray: rgb(192, 189, 189);
     }
   }
 }
+
+.signInBtn {
+  border: none;
+  text-align: right;
+  flex-grow: 1;
+  &:hover {
+    cursor: pointer;
+    color: $red;
+  }
+}

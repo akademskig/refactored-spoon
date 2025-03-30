@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 import styles from '../styles/header.module.scss';
-import { Search } from 'lucide-react';
+import { Search, User } from 'lucide-react';
 import { useAuthModal } from '../hooks/useAuthModal';
 import Logo from './Logo';
 import { ModalViewEnum } from '../types/ModalViewEnum';
@@ -45,7 +45,9 @@ const Header = ({ onSearch }: Props) => {
           Search
         </button>
       </form>
-      <button onClick={() => open(ModalViewEnum.SIGNIN)}>Sign In</button>
+      <button className={styles.signInBtn} onClick={() => open(ModalViewEnum.SIGNIN)}>
+        <User />
+      </button>
     </header>
   );
 };
