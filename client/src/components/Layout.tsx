@@ -23,7 +23,7 @@ const Layout = () => {
       setArticles(fetchedArticles);
 
       const uniqueCategories: string[] = Array.from(
-        new Set(fetchedArticles.map((article: Article) => article.category || 'General'))
+        new Set(fetchedArticles.map((article: Article) => article.category)),
       );
       setCategories([ALL_CATEGORIES, ...uniqueCategories]);
     } catch (error) {
