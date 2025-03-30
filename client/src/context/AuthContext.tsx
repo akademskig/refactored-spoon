@@ -3,8 +3,7 @@ import { User } from '../types/User';
 
 type AuthContextType = {
   user: User | null;
-  token: string | null;
-  login: (user: User, token: string) => void;
+  login: (user: User) => void;
   logout: () => void;
 };
 

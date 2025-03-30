@@ -62,10 +62,17 @@ $input-gray: rgb(192, 189, 189);
   }
 }
 
-.signInBtn {
-  border: none;
-  text-align: right;
+.userMenu {
   flex-grow: 1;
+  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.authBtn {
+  border: none;
+  background: transparent;
   &:hover {
     cursor: pointer;
     color: $red;

@@ -19,7 +19,7 @@ const SignInForm = () => {
     e.preventDefault();
     try {
       const res = await api.post('/signin', form);
-      login(res.data.user, res.data.token);
+      login(res.data.user);
       close(); // close modal on success
     } catch (err: unknown) {
       if (err instanceof AxiosError && err.response?.data?.msg) {
