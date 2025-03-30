@@ -6,6 +6,8 @@ export type ModalView = ModalViewEnum | null;
 const AuthModalContext = createContext<{
   modal: ModalView;
   open: (view: ModalView) => void;
+  isClosing?: boolean;
+  isOpening?: boolean;
   close: () => void;
 }>({
   modal: null,

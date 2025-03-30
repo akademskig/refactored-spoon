@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from 'react';
 import { ModalViewEnum } from '../types/ModalViewEnum';
 
 const AuthModal = () => {
-  const { modal, close } = useAuthModal();
+  const { modal, close, isClosing, isOpening } = useAuthModal();
   const modalRef = useRef<HTMLDivElement>(null);
   const [mouseDownInside, setMouseDownInside] = useState(false);
 
@@ -21,7 +21,7 @@ const AuthModal = () => {
     };
 
     const handleMouseUp = (e: MouseEvent) => {
-      const clickOutside = !modalRef.current?.contains(e.target as Node);
+      const clickOutside = modalRef.current && !modalRef.current?.contains(e.target as Node);
       if (!mouseDownInside && clickOutside) {
         close();
       }
@@ -35,10 +35,11 @@ const AuthModal = () => {
       document.removeEventListener('mouseup', handleMouseUp);
     };
   }, [close, mouseDownInside]);
-  if (!modal) return null;
 
   return (
-    <div className={styles.authModalOverlay}>
+    <div
+      className={`${styles.authModalOverlay} ${isOpening ? styles.opening : ''}${isClosing ? styles.closing : ''}`}
+    >
       <div className={styles.authModal} ref={modalRef}>
         <div className={styles.logoWrapper}>
           <Logo center />
