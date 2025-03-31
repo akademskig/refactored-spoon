@@ -24,6 +24,7 @@
     "typescript": "^5.8.2"
   },
   "dependencies": {
+    "@sendgrid/mail": "^8.1.4",
     "axios": "^1.8.4",
     "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
