@@ -12,8 +12,11 @@ import {
   Earth,
   MessageSquare,
   Podcast,
+  BookMarked,
 } from 'lucide-react';
 import styles from '../styles/sidebar.module.scss';
+import { NavLink, useParams } from 'react-router-dom';
+import { ALL_CATEGORIES, FAVORITES } from '../constants';
 
 const ICONS: Record<string, JSX.Element> = {
   home: <Home />,
@@ -28,25 +31,42 @@ const ICONS: Record<string, JSX.Element> = {
   world: <Earth />,
   opinion: <MessageSquare />,
   podcasts: <Podcast />,
+  favorites: <BookMarked />,
 };
 
 type Props = {
   categories: string[];
-  selected: string;
-  onSelect: (c: string) => void;
 };
 
 const toUppercase = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 
-const Sidebar = ({ categories, selected, onSelect }: Props) => {
+const Sidebar = ({ categories }: Props) => {
+  const { slug } = useParams();
+  const selectedCategory = slug ? decodeURIComponent(slug) : ALL_CATEGORIES;
   return (
     <aside className={styles.sidebar}>
-      {categories.map((c) => (
-        <button key={c} className={selected === c ? styles.active : ''} onClick={() => onSelect(c)}>
-          {ICONS[c] || <Newspaper />}
-          {toUppercase(c)}
-        </button>
-      ))}
+      <nav>
+        <NavLink to={'/home'}>
+          <button className={selectedCategory === ALL_CATEGORIES ? styles.active : ''}>
+            <Home />
+            Home
+          </button>
+        </NavLink>
+        {categories.map((c) => (
+          <NavLink to={`category/${c}`} key={c}>
+            <button key={c} className={selectedCategory === c ? styles.active : ''}>
+              {ICONS[c] || <Newspaper />}
+              {toUppercase(c)}
+            </button>
+          </NavLink>
+        ))}
+        <NavLink to={'favorites'}>
+          <button className={selectedCategory === FAVORITES ? styles.active : ''}>
+            <BookMarked />
+            Favorites
+          </button>
+        </NavLink>
+      </nav>
     </aside>
   );
 };
