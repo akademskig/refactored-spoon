@@ -73,3 +73,17 @@ $margin-medium: 0.5rem;
     }
   }
 }
+.authorBookmark {
+  display: flex;
+  justify-content: space-between;
+}
+.bookmark {
+  padding-right: 0;
+  background-color: transparent;
+  border: none;
+
+  &:hover {
+    color: $red;
+    cursor: pointer;
+  }
+}

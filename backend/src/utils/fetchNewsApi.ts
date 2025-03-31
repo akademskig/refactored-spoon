@@ -10,6 +10,7 @@ const getDefaultImageUrl = (seed: string) => `https://picsum.photos/seed/newsapi
 // Utility Functions
 const mapArticle = (article: any, i: number): Article => ({
   id: `newsapi_${i}_${article.publishedAt}`,
+  url: article.url,
   title: article.title,
   abstract: article.description,
   published_date: article.publishedAt,

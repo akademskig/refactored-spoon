@@ -6,14 +6,14 @@ import Banner from './TopBanner';
 import LatestNewsWidget from './LatestNewsWidget';
 import api from '../services/api';
 import { Article } from '../types/Article';
-import { ALL_CATEGORIES } from '../constants';
 import styles from '../styles/layout.module.scss';
+import { Bookmark } from '../types/Bookmark';
 
 const Layout = () => {
   const [articles, setArticles] = useState<Article[]>([]);
   const [categories, setCategories] = useState<string[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState<string>(ALL_CATEGORIES);
   const [searchQuery, setSearchQuery] = useState('');
+  const [bookmarks, setBookmarks] = useState<Map<string, Bookmark>>(new Map());
 
   // Fetch articles and categories
   const fetchArticles = useCallback(async () => {
@@ -25,13 +25,26 @@ const Layout = () => {
       const uniqueCategories: string[] = Array.from(
         new Set(fetchedArticles.map((article: Article) => article.category)),
       );
-      setCategories([ALL_CATEGORIES, ...uniqueCategories]);
+      setCategories(uniqueCategories);
     } catch (error) {
       console.error('Error fetching articles:', error);
     }
   }, []);
 
+  const fetchBookmarks = async () => {
+    const res = await api.get('/bookmarks');
+    const bookmarkMap = new Map<string, Bookmark>(
+      res.data.map((b: Bookmark) => [b.article.url, b]),
+    );
+    setBookmarks(bookmarkMap);
+  };
+
+  const toggleBookmark = async (article: Article) => {
+    await api.post('/bookmark', article);
+    fetchBookmarks(); // re-fetch the updated list
+  };
   useEffect(() => {
+    fetchBookmarks();
     fetchArticles();
   }, [fetchArticles]);
 
@@ -41,13 +54,9 @@ const Layout = () => {
       <div className={styles.container}>
         <Header onSearch={setSearchQuery} />
         <div className={styles.layout}>
-          <Sidebar
-            categories={categories}
-            selected={selectedCategory}
-            onSelect={setSelectedCategory}
-          />
+          <Sidebar categories={categories} />
           <main className={styles.mainContent}>
-            <Outlet context={{ articles, selectedCategory, searchQuery }} />
+            <Outlet context={{ articles, searchQuery, bookmarks, toggleBookmark }} />
             <LatestNewsWidget />
           </main>
         </div>

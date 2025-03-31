@@ -18,6 +18,7 @@ const mapArticle = (article: any): Article => {
   const multimedia = article.multimedia?.find((m: any) => m.format === IMAGE_FORMAT);
   return {
     id: `nyt_${article.url}`,
+    url: article.url,
     title: article.title,
     abstract: article.abstract,
     published_date: article.published_date,
