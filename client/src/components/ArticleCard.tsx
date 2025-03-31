@@ -19,7 +19,7 @@ const ArticleCard = ({ article, toggleBookmark, isBookmarked }: Props) => {
         <span className={styles.authorBookmark}>
           <p className={styles.author}>{author}</p>
           <button className={styles.bookmark} onClick={() => toggleBookmark(article)}>
-            {isBookmarked ? <BookmarkPlus /> : <BookmarkMinus />}
+            {isBookmarked ? <BookmarkMinus /> : <BookmarkPlus />}
           </button>
         </span>
       </div>

@@ -1,0 +1,29 @@
+@use '../styles/variables.scss' as *;
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  text-align: center;
+  color: $gray;
+  grid-column-start: 1;
+  grid-column-end: 3;
+
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: $dark-gray;
+  }
+
+  p {
+    font-size: 0.95rem;
+  }
+
+  .icon {
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    opacity: 0.4;
+  }
+}

@@ -3,8 +3,10 @@ import ArticleCard from '../components/ArticleCard';
 import { Article } from '../types/Article';
 import { ALL_CATEGORIES } from '../constants';
 import { Bookmark } from '../types/Bookmark';
+import EmptyList from './EmptyList';
+import { Scroll } from 'lucide-react';
 
-type OutletContext = {
+export type OutletContext = {
   articles: Article[];
   selectedCategory: string;
   searchQuery: string;
@@ -34,14 +36,22 @@ const Home = () => {
 
   return (
     <>
-      {filteredArticles.map((article) => (
-        <ArticleCard
-          key={article.id}
-          article={article}
-          isBookmarked={!!bookmarks.get(article.url)}
-          toggleBookmark={toggleBookmark}
+      {filteredArticles.length ? (
+        filteredArticles.map((article) => (
+          <ArticleCard
+            key={article.id}
+            article={article}
+            isBookmarked={!!bookmarks.get(article.url)}
+            toggleBookmark={toggleBookmark}
+          />
+        ))
+      ) : (
+        <EmptyList
+          title="Nothing here"
+          subtitle="No articles match the selected criteria."
+          icon={<Scroll size={50} />}
         />
-      ))}
+      )}
     </>
   );
 };
