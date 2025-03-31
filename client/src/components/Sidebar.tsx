@@ -15,8 +15,8 @@ import {
   BookMarked,
 } from 'lucide-react';
 import styles from '../styles/sidebar.module.scss';
-import { NavLink, useParams } from 'react-router-dom';
-import { ALL_CATEGORIES, FAVORITES } from '../constants';
+import { NavLink, useLocation, useParams } from 'react-router-dom';
+import { SIDEBAR_ITEMS } from '../utils/sidebarItems';
 
 const ICONS: Record<string, JSX.Element> = {
   home: <Home />,
@@ -42,28 +42,29 @@ const toUppercase = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 
 const Sidebar = ({ categories }: Props) => {
   const { slug } = useParams();
-  const selectedCategory = slug ? decodeURIComponent(slug) : ALL_CATEGORIES;
+  const { pathname } = useLocation();
+
   return (
     <aside className={styles.sidebar}>
       <nav>
-        <NavLink to={'/home'}>
-          <button className={selectedCategory === ALL_CATEGORIES ? styles.active : ''}>
+        <NavLink to={SIDEBAR_ITEMS.home.route}>
+          <button className={pathname === SIDEBAR_ITEMS.home.route ? styles.active : ''}>
             <Home />
-            Home
+            {toUppercase(SIDEBAR_ITEMS.home.name)}
           </button>
         </NavLink>
         {categories.map((c) => (
           <NavLink to={`category/${c}`} key={c}>
-            <button key={c} className={selectedCategory === c ? styles.active : ''}>
+            <button key={c} className={slug === c ? styles.active : ''}>
               {ICONS[c] || <Newspaper />}
               {toUppercase(c)}
             </button>
           </NavLink>
         ))}
-        <NavLink to={'favorites'}>
-          <button className={selectedCategory === FAVORITES ? styles.active : ''}>
+        <NavLink to={SIDEBAR_ITEMS.favorites.route}>
+          <button className={pathname === SIDEBAR_ITEMS.favorites.route ? styles.active : ''}>
             <BookMarked />
-            Favorites
+            {toUppercase(SIDEBAR_ITEMS.favorites.name)}
           </button>
         </NavLink>
       </nav>
