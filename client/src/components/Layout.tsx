@@ -8,12 +8,15 @@ import api from '../services/api';
 import { Article } from '../types/Article';
 import styles from '../styles/layout.module.scss';
 import { Bookmark } from '../types/Bookmark';
+import Toast from './Toast';
+import { useAuth } from '../hooks/useAuth';
 
 const Layout = () => {
   const [articles, setArticles] = useState<Article[]>([]);
   const [categories, setCategories] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [bookmarks, setBookmarks] = useState<Map<string, Bookmark>>(new Map());
+  const { user } = useAuth();
 
   // Fetch articles and categories
   const fetchArticles = useCallback(async () => {
@@ -44,9 +47,11 @@ const Layout = () => {
     fetchBookmarks(); // re-fetch the updated list
   };
   useEffect(() => {
-    fetchBookmarks();
+    if (user) {
+      fetchBookmarks();
+    }
     fetchArticles();
-  }, [fetchArticles]);
+  }, [fetchArticles, user]);
 
   return (
     <>
@@ -58,6 +63,7 @@ const Layout = () => {
           <main className={styles.mainContent}>
             <Outlet context={{ articles, searchQuery, bookmarks, toggleBookmark }} />
             <LatestNewsWidget />
+            <Toast />
           </main>
         </div>
       </div>
