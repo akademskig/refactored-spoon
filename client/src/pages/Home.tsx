@@ -1,10 +1,11 @@
 import { useOutletContext, useParams } from 'react-router-dom';
 import ArticleCard from '../components/ArticleCard';
 import { Article } from '../types/Article';
-import { ALL_CATEGORIES } from '../constants';
+import { HOME } from '../utils/sidebarItems';
 import { Bookmark } from '../types/Bookmark';
 import EmptyList from './EmptyList';
 import { Scroll } from 'lucide-react';
+import Loader from '../components/Loader';
 
 export type OutletContext = {
   articles: Article[];
@@ -17,13 +18,12 @@ export type OutletContext = {
 const Home = () => {
   const { articles, searchQuery, bookmarks, toggleBookmark } = useOutletContext<OutletContext>();
   const { slug } = useParams();
-  const selectedCategory = slug ? decodeURIComponent(slug) : ALL_CATEGORIES;
+  const selectedCategory = slug ? decodeURIComponent(slug) : HOME;
 
   // Filter articles by category and search query
   const getFilteredArticles = () => {
     return articles.filter((article) => {
-      const matchesCategory =
-        selectedCategory === ALL_CATEGORIES || article.category === selectedCategory;
+      const matchesCategory = selectedCategory === HOME || article.category === selectedCategory;
       const matchesSearchQuery = searchQuery
         ? article.title.toLowerCase().includes(searchQuery.toLowerCase())
         : true;
@@ -32,14 +32,14 @@ const Home = () => {
   };
 
   const filteredArticles = getFilteredArticles();
-  if (!articles.length) return <p>Loading...</p>;
+  if (!articles.length) return <Loader />;
 
   return (
     <>
       {filteredArticles.length ? (
         filteredArticles.map((article) => (
           <ArticleCard
-            key={article.id}
+            key={`home_${article.id}`}
             article={article}
             isBookmarked={!!bookmarks.get(article.url)}
             toggleBookmark={toggleBookmark}

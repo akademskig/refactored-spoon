@@ -6,6 +6,7 @@ import { useOutletContext } from 'react-router-dom';
 import { OutletContext } from './Home';
 import EmptyList from './EmptyList';
 import { Bookmark } from 'lucide-react';
+import Loader from '../components/Loader';
 
 const Favorites = () => {
   const { toggleBookmark, searchQuery } = useOutletContext<OutletContext>();
@@ -46,11 +47,11 @@ const Favorites = () => {
   }, [fetchArticles]);
 
   return loading ? (
-    <p>Loading...</p>
+    <Loader />
   ) : filteredArticles.length ? (
     filteredArticles.map((article) => (
       <ArticleCard
-        key={article.id}
+        key={`favorites_${article.id}`}
         article={article}
         isBookmarked={true}
         toggleBookmark={handleToggleBookmark}

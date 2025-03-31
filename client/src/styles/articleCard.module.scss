@@ -51,12 +51,12 @@ $margin-medium: 0.5rem;
       font-weight: 500;
       margin: $margin-small 0 $margin-medium;
       color: $black;
-      margin-bottom: 0.75rem;
       display: -webkit-box;
       -webkit-box-orient: vertical;
       -webkit-line-clamp: 2;
       line-clamp: 2;
       overflow: hidden;
+      height: 40px;
       text-overflow: ellipsis;
       @include respond-md {
         font-size: $font-size-medium;
@@ -67,6 +67,12 @@ $margin-medium: 0.5rem;
       font-size: $font-size-small;
       color: $gray;
       margin-top: auto;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      overflow: hidden;
+      text-overflow: ellipsis;
       @include respond-md {
         font-size: $font-size-small;
       }
