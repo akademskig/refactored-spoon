@@ -1,11 +1,11 @@
 import { useOutletContext, useParams } from 'react-router-dom';
-import ArticleCard from '../components/ArticleCard';
+import ArticleCard from '../components/ArticleCard/ArticleCard';
 import { Article } from '../types/Article';
-import { HOME } from '../utils/sidebarItems';
+import { HOME } from '../components/Sidebar/sidebarItems';
 import { Bookmark } from '../types/Bookmark';
-import EmptyList from './EmptyList';
+import EmptyList from '../components/EmptyList/EmptyList';
 import { Scroll } from 'lucide-react';
-import Loader from '../components/Loader';
+import Loader from '../components/Loader/Loader';
 
 export type OutletContext = {
   articles: Article[];
