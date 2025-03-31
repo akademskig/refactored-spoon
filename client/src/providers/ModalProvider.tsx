@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import AuthModalContext, { ModalView } from '../context/AuthModalContext';
-import AuthModal from '../components/AuthModal';
+import ModalContext, { ModalView } from '../context/ModalContext';
+import Modal from '../components/Modal/Modal';
 
-export const AuthModalProvider = ({ children }: { children: React.ReactNode }) => {
+export const ModalProvider = ({ children }: { children: React.ReactNode }) => {
   const [modal, setModal] = useState<ModalView>(null);
   const [isOpening, setIsOpening] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
@@ -24,11 +24,11 @@ export const AuthModalProvider = ({ children }: { children: React.ReactNode }) =
   };
 
   return (
-    <AuthModalContext.Provider
+    <ModalContext.Provider
       value={{ modal, open: handleOpen, close: handleClose, isClosing, isOpening }}
     >
       {children}
-      {modal && <AuthModal />}
-    </AuthModalContext.Provider>
+      {modal && <Modal />}
+    </ModalContext.Provider>
   );
 };

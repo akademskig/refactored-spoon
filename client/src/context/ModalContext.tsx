@@ -1,9 +1,9 @@
 import { createContext } from 'react';
-import { ModalViewEnum } from '../types/ModalViewEnum';
+import { ModalViewEnum } from '../components/Modal/ModalViewEnum';
 
 export type ModalView = ModalViewEnum | null;
 
-const AuthModalContext = createContext<{
+const ModalContext = createContext<{
   modal: ModalView;
   open: (view: ModalView) => void;
   isClosing?: boolean;
@@ -15,4 +15,4 @@ const AuthModalContext = createContext<{
   close: () => {},
 });
 
-export default AuthModalContext;
+export default ModalContext;
