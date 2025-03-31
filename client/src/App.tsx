@@ -1,10 +1,10 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Home from './pages/Home';
 import './styles/main.scss';
-import Layout from './components/Layout';
 import Favorites from './pages/Favorites';
 import VerifyEmail from './pages/VerifyEmail';
-import { SIDEBAR_ITEMS } from './utils/sidebarItems';
+import { SIDEBAR_ITEMS } from './components/Sidebar/sidebarItems';
+import Layout from './components/Layout/Layout';
 
 const App = () => {
   return (

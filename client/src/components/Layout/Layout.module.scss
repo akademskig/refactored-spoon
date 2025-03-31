@@ -1,0 +1,28 @@
+@use '../../styles/variables' as *;
+
+.container {
+  max-width: 1150px;
+  margin: auto;
+}
+
+.layout {
+  display: flex;
+  background: $color-bg-gray;
+  min-height: 100vh;
+  align-items: flex-start;
+}
+
+.mainContent {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: min-content;
+  @include respond-md {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  @include respond-sm {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
