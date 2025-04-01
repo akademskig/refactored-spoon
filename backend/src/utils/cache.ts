@@ -5,7 +5,8 @@ type CacheItem<T> = {
 
 const cache: Record<string, CacheItem<any>> = {};
 
-export const ARTICLES_CACHE_KEY = 'articles';
+export const NYT_ARTICLES_CACHE_KEY = 'nyt_articles';
+export const NEWS_API_ARTICLES_CACHE_KEY = (page: number) => `nyt_articles_${page}`;
 
 export const setCache = <T>(key: string, data: T, ttlSeconds = 300) => {
   cache[key] = {

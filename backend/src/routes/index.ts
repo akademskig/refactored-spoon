@@ -12,6 +12,7 @@ router.get('/verify/:token', auth.verifyEmail);
 router.post('/logout', auth.logout);
 
 router.get('/articles', articles.getArticles);
+router.get('/latest-articles', articles.getLatestArticles);
 
 router.use(authMiddleware);
 router.post('/bookmark', bookmarks.toggleBookmark);

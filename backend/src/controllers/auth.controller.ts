@@ -69,7 +69,7 @@ export const signin = async (req: Request, res: Response) => {
 
   try {
     const user = await UserModel.findOne({ email });
-    if(!user){
+    if (!user) {
       return handleError(res, 401, 'User not found');
     }
     if (!user || !(await bcrypt.compare(password, user.hashedPassword))) {
