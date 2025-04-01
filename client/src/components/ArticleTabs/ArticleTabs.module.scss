@@ -1,0 +1,49 @@
+@use '../../styles/variables' as *;
+
+.wrapper {
+  margin-top: 1rem;
+}
+
+.tabs {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+
+  button {
+    background: transparent;
+    border: none;
+    padding: 0.6rem 1.5rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    &:hover {
+      color: $red;
+    }
+  }
+
+  .active {
+    background: rgba($red-rgb, 10%);
+    color: $red;
+    &:hover {
+      background: rgba($red-rgb, 5%);
+    }
+  }
+}
+
+.featured {
+  padding: 0 0 1.5rem 0;
+  gap: 1.5rem;
+  @include respond-sm {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  @include respond-xs {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
