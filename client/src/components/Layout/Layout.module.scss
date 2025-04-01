@@ -8,7 +8,7 @@
     padding: 1.5rem;
   }
   @include respond-sm {
-    padding: 1rem;
+    padding: $padding-lg;
   }
 }
 
@@ -16,18 +16,18 @@
   display: flex;
   background: $color-bg-gray;
   align-items: flex-start;
-  gap: 1rem;
+  gap: $spacing-md;
 }
 
 .mainContent {
   display: grid;
-  gap: 1.5rem;
+  gap: $spacing-lg;
   padding: 1.5rem 0;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   grid-template-rows: min-content;
   @include respond-md {
     grid-template-columns: 1fr 1fr;
-    gap: 1rem;
+    gap: $spacing-md;
   }
   @include respond-sm {
     display: none;

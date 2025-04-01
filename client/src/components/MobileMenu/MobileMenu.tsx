@@ -27,7 +27,7 @@ const MobileMenu = ({ categories, onSearch }: Props) => {
       {open && (
         <div className={styles.overlay}>
           <button className={styles.close} onClick={onClose}>
-            <X />
+            <X size={30} />
           </button>
 
           <div className={styles.content}>

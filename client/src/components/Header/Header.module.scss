@@ -1,12 +1,11 @@
 @use '../../styles/variables' as *;
 
-$color-border: #ddd;
 $button-border-radius: 6px;
 $input-gray: rgb(192, 189, 189);
 
 .header {
   width: 100%;
-  background: #fff;
+  background: $color-bg-light;
   box-sizing: border-box;
   border-bottom: 1px solid $color-border;
   display: flex;
@@ -14,7 +13,7 @@ $input-gray: rgb(192, 189, 189);
   padding-bottom: $padding-layout-md;
   background-color: transparent;
   flex-wrap: nowrap;
-  gap: 1rem;
+  gap: $spacing-md;
   @include respond-sm {
     display: grid;
     grid-template-columns: 4fr 1fr;
@@ -22,7 +21,7 @@ $input-gray: rgb(192, 189, 189);
   }
 
   .logo {
-    margin-right: 2rem;
+    margin-right: $spacing-xl;
   }
 }
 
@@ -44,6 +43,6 @@ $input-gray: rgb(192, 189, 189);
   background: transparent;
   &:hover {
     cursor: pointer;
-    color: $red;
+    color: $color-primary;
   }
 }

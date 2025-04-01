@@ -1,49 +1,49 @@
 @use '../../styles/variables' as *;
 
 .wrapper {
-  margin-top: 1rem;
+  margin-top: $spacing-md;
 }
 
 .tabs {
   display: flex;
-  gap: 1rem;
+  gap: $spacing-md;
   justify-content: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: $spacing-lg;
 
   button {
     background: transparent;
     border: none;
-    padding: 0.6rem 1.5rem;
-    border-radius: 20px;
-    font-weight: 600;
-    font-size: 1rem;
+    padding: $spacing-sm $spacing-lg;
+    border-radius: $border-radius-xl;
+    font-weight: $font-weight-bold;
+    font-size: $font-size-md;
     cursor: pointer;
     transition: background 0.2s;
     &:hover {
-      color: $red;
+      color: $color-primary;
     }
   }
 
   .active {
-    background: rgba($red-rgb, 10%);
-    color: $red;
+    background: rgba($color-primary-rgb, 10%);
+    color: $color-primary;
     &:hover {
-      background: rgba($red-rgb, 5%);
+      background: rgba($color-primary-rgb, 5%);
     }
   }
 }
 
 .featured {
-  padding: 0 0 1.5rem 0;
-  gap: 1.5rem;
+  padding: 0 0 $spacing-lg 0;
+  gap: $spacing-lg;
   @include respond-sm {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1rem;
+    gap: $spacing-md;
   }
   @include respond-xs {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: $spacing-md;
   }
 }

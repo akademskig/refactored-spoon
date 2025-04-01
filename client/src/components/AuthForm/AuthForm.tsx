@@ -33,24 +33,35 @@ const AuthForm = ({ formType, children, onSubmit }: AuthFormProps) => {
     }
   };
 
+  const renderSwitchText = () => {
+    if (formType === FormTypeEnum.SIGNIN) {
+      return (
+        <>
+          Don't have an account?{' '}
+          <span onClick={() => open(ModalViewEnum.SIGNUP)} className={styles.switchLink}>
+            Sign Up
+          </span>
+        </>
+      );
+    }
+    return (
+      <>
+        Already have an account?{' '}
+        <span onClick={() => open(ModalViewEnum.SIGNIN)} className={styles.switchLink}>
+          Sign In
+        </span>
+      </>
+    );
+  };
+
   return (
     <form className={styles.authForm} onSubmit={handleSubmit}>
       <h2 className={styles.formTitle}>
-        {formType === FormTypeEnum.SIGNIN ? 'Sign In' : 'Sign up'}
+        {formType === FormTypeEnum.SIGNIN ? 'Sign In' : 'Sign Up'}
       </h2>
       {error && <p className={styles.error}>{error}</p>}
       {children}
-      <p className={styles.switch}>
-        {formType === FormTypeEnum.SIGNIN ? (
-          <>
-            Don't have an account? <span onClick={() => open(ModalViewEnum.SIGNUP)}>Sign Up</span>
-          </>
-        ) : (
-          <>
-            Already have an account? <span onClick={() => open(ModalViewEnum.SIGNIN)}>Sign In</span>
-          </>
-        )}
-      </p>
+      <p className={styles.switch}>{renderSwitchText()}</p>
     </form>
   );
 };

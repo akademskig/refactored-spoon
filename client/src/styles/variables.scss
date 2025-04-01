@@ -1,24 +1,25 @@
 // Colors
-$color-bg-light: #fff;
-$color-bg-gray: #f4f5f8;
 $white: #fff;
 $black: #111;
-$gray: #666;
 $dark-gray: #333;
 $blue: #1e71bb;
-$red: #bb1e1e;
-$red-rgb: rgb(187, 30, 30);
+$color-bg-light: #fff;
+$color-bg-gray: #f4f5f8;
+$color-primary: #bb1e1e;
+$color-primary-rgb: rgb(187, 30, 30);
 $color-border: #ddd;
+$color-border-light: #eee;
+$color-danger: #d40000;
+$color-danger-rgb: rgb(212, 0, 0); // For rgba usage
+$color-text-light: #ffffff;
+$color-text-muted: #aaa;
+$color-text-dark: #666;
+$color-text-black: #000;
 // Breakpoints
 $breakpoint-xs: 420px;
 $breakpoint-sm: 620px;
 $breakpoint-md: 862px;
 $breakpoint-lg: 1024px;
-
-// Font sizes
-$font-size-small: 0.75rem;
-$font-size-medium: 0.875rem;
-$font-size-large: 1rem;
 
 //padding
 $padding-layout-lg: 2rem;
@@ -26,7 +27,36 @@ $padding-layout-md: 1.5rem;
 $padding-layout-sm: 1rem;
 $padding-lg: 1rem;
 $padding-md: 0.75rem;
+// -------------
 
+// Spacing
+$spacing-xxs: 0.4rem;
+$spacing-xs: 0.5rem;
+$spacing-sm: 0.75rem;
+$spacing-md: 1rem;
+$spacing-lg: 1.5rem;
+$spacing-xl: 2rem;
+$spacing-xxl: 4rem;
+// Font Sizes
+$font-size-xxs: 0.6rem;
+$font-size-xs: 0.75rem;
+$font-size-sm: 0.875rem;
+$font-size-md: 1rem;
+$font-size-lg: 1.5rem;
+$font-size-xl: 2rem;
+
+// Font Weights
+$font-weight-normal: 500;
+$font-weight-bold: 600;
+$font-weight-extra-bold: 900;
+
+// Border Radius
+$border-radius-md: 6px;
+$border-radius-lg: 12px;
+$border-radius-xl: 12px;
+
+// Shadows
+$box-shadow-light: 0 1px 3px rgba(0, 0, 0, 0.1);
 //Mixins
 @mixin respond-xs {
   @media (max-width: $breakpoint-xs) {

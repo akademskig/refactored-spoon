@@ -28,7 +28,7 @@
   width: 90%;
   max-width: 400px;
   position: relative;
-  margin: 1rem;
+  margin: $spacing-md;
   @include respond-md {
     padding: $padding-layout-md;
   }
@@ -40,7 +40,7 @@
 .closeBtn {
   position: absolute;
   top: 0.5rem;
-  right: 0.75rem;
+  right: $font-size-xs;
   font-size: 1.5rem;
   background: none;
   border: none;
@@ -49,27 +49,27 @@
 .tabs {
   display: flex;
   justify-content: space-around;
-  margin-bottom: 1.5rem;
-  gap: 1rem;
+  margin-bottom: $spacing-lg;
+  gap: $spacing-md;
 
   button {
     background: none;
     border: none;
-    font-size: 1rem;
+    font-size: $spacing-md;
     padding-bottom: 0.25rem;
     border-bottom: 2px solid transparent;
     cursor: pointer;
-    color: #666;
-    font-weight: 500;
+    color: $color-text-dark;
+    font-weight: $font-weight-normal;
 
     &.active {
-      color: #d40000;
-      border-bottom-color: #d40000;
-      font-weight: 600;
+      color: $color-primary;
+      border-bottom-color: $color-primary;
+      font-weight: $font-weight-bold;
     }
 
     &:hover {
-      color: #d40000;
+      color: $color-primary;
     }
   }
 }
@@ -78,7 +78,7 @@
   display: flex;
   justify-content: center;
   border-bottom: $color-border solid 1px;
-  padding-bottom: 1rem;
+  padding-bottom: $spacing-md;
 
   img {
     width: 100px;

@@ -8,18 +8,18 @@
   text-align: right;
   @include respond-sm {
     display: block;
-    margin-left: 1rem;
+    margin-left: $spacing-md; // Use spacing variable
   }
 }
 
 .overlay {
   position: fixed;
   inset: 0;
-  background: #f7f7f7;
+  background: $color-bg-gray; // Use light background color variable
   z-index: 999;
   display: flex;
   flex-direction: column;
-  padding: 2rem 1.5rem;
+  padding: $spacing-xl $spacing-lg; // Use spacing variables
   overflow-y: auto;
   display: none;
   @include respond-sm {
@@ -29,56 +29,56 @@
 
 .close {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: $spacing-md; // Use spacing variable
+  right: $spacing-md; // Use spacing variable
   background: none;
   border: none;
-  font-size: 2rem;
   cursor: pointer;
-  color: $black;
+  color: $color-text-dark; // Use dark text color variable
   svg {
-    font-weight: 900;
+    font-weight: $font-weight-bold; // Use font weight variable
   }
   &:hover {
-    color: $red;
+    color: $color-primary; // Use primary color variable
   }
 }
 
 .logo {
   text-align: center;
-  margin: 4rem 0;
+  font-size: $font-size-xl; // Use font size variable
+  margin: $spacing-xxl 0; // Use spacing variable
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.25rem;
+  gap: $spacing-lg; // Use spacing variable
 }
 
 .item {
   background: none;
   text-align: center;
-  font-size: 0.875rem;
-  color: $gray;
+  font-size: $font-size-md; // Use font size variable
+  color: $color-text-dark; // Use dark text color variable
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.4rem;
+  gap: $spacing-sm; // Use spacing variable
   text-decoration: none;
-  padding: 1.5rem;
+  padding: $spacing-lg; // Use spacing variable
 
   &:hover {
-    color: $red;
+    color: $color-primary; // Use primary color variable
   }
 }
 
 .active {
-  background: white;
-  color: $red;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
+  background: $white; // Use light text color variable
+  color: $color-primary; // Use primary color variable
+  box-shadow: $box-shadow-light; // Use shadow variable
+  border-radius: $border-radius-md; // Use border radius variable
 }
 
 .seachWrapper {
-  margin-bottom: 2rem;
+  margin-bottom: $spacing-xl; // Use spacing variable
 }

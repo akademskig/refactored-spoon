@@ -1,14 +1,16 @@
 @use '../../styles/variables' as *;
 
 .logo {
-  font-size: 1.5rem;
-  font-weight: 900;
-  color: $red;
+  font-size: $font-size-lg; // Use font size variable
+  font-weight: $font-weight-extra-bold; // Use font weight variable
+  color: $color-primary; // Use primary color variable
+
   span {
-    color: #000;
-    font-weight: 900;
+    color: $color-text-black; // Use dark text color variable
+    font-weight: $font-weight-extra-bold; // Use font weight variable
   }
 }
+
 .center {
   text-align: center;
 }

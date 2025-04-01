@@ -1,7 +1,5 @@
 @use '../../styles/variables' as *;
 
-$color-border: #ddd;
-$button-border-radius: 6px;
 $input-gray: rgb(192, 189, 189);
 
 .searchWrapper {
@@ -9,10 +7,10 @@ $input-gray: rgb(192, 189, 189);
   box-sizing: border-box;
   width: 100%;
   max-width: 725px;
-  padding: 0.35rem;
-  padding-left: 0.7rem;
+  padding: $spacing-xxs;
+  padding-left: $spacing-md;
   background-color: $white;
-  border-radius: $button-border-radius;
+  border-radius: $border-radius-md;
   justify-content: center;
   align-items: center;
   @include respond-sm {
@@ -22,34 +20,31 @@ $input-gray: rgb(192, 189, 189);
 
   input {
     flex: 1;
-    padding: 0.5rem 1rem;
+    padding: $spacing-xs $spacing-md;
     border: none;
-    font-size: 0.875rem;
+    font-size: $font-size-md;
     &:focus {
       outline: none;
     }
     &::placeholder {
       color: $input-gray;
-      font-size: 0.875rem;
+      font-size: $font-size-md;
     }
   }
 
   .searchBtn {
-    background: $red;
+    background: $color-primary;
     color: $white;
     border: none;
-    padding: 0.6rem 1rem;
-    border-radius: $button-border-radius;
+    padding: $spacing-sm $spacing-md;
+    border-radius: $border-radius-md;
     cursor: pointer;
-    font-weight: 600;
+    font-weight: $font-weight-bold;
     @include respond-sm {
       display: none;
     }
   }
   .searchIcon {
     color: $input-gray;
-    svg {
-      width: 1.1rem;
-    }
   }
 }

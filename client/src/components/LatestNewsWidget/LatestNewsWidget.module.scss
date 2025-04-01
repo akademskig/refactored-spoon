@@ -1,19 +1,14 @@
 @use '../../styles/variables' as *;
 
 $max-width-widget: 360px;
-$border-radius-root: 12px;
 $dot-size: 22px;
-$gap-small: 0.5rem;
-$margin-bottom: 1rem;
 $box-shadow-root: 0 1px 3px rgba(0, 0, 0, 0.05);
-$border: 1px solid #eee;
-$padding-list: 0.8rem;
-$padding-root: 1.5rem 0.2rem 0.65rem 1.5rem;
-$font-size-time: 0.6rem;
+$border: 1px solid $color-border-light;
+$padding-root: $spacing-lg $spacing-xl $spacing-sm 0.65rem $spacing-lg;
 
 .root {
   background: $color-bg-light;
-  border-radius: $border-radius-root;
+  border-radius: $border-radius-lg;
   display: flex;
   flex-direction: column;
   grid-column-start: 3;
@@ -39,17 +34,18 @@ $font-size-time: 0.6rem;
     padding: 0;
   }
   h3 {
-    font-size: $font-size-large;
-    margin-bottom: $margin-bottom;
+    font-size: $font-size-md;
+    margin-bottom: $spacing-md;
+    font-weight: $font-weight-bold;
     margin-top: 0;
     display: flex;
     align-items: center;
-    gap: $gap-small;
+    gap: $spacing-xs;
 
     .dotOuter {
       width: $dot-size;
       height: $dot-size;
-      background-color: rgba($red-rgb, 0.3);
+      background-color: rgba($color-primary-rgb, 0.3);
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -60,38 +56,38 @@ $font-size-time: 0.6rem;
       width: 11px;
       height: 11px;
       border-radius: 50%;
-      background-color: rgba($red-rgb, 1);
+      background-color: rgba($color-primary-rgb, 1);
     }
   }
 
   li {
     list-style: none;
-    padding: $padding-list 0;
+    padding: $spacing-sm 0;
     border-bottom: $border;
 
     span {
       font-weight: 600;
       color: $blue;
-      font-size: $font-size-time;
+      font-size: $font-size-xxs;
       display: block;
       margin-bottom: 0.25rem;
     }
 
     p {
       margin: 0;
-      font-size: $font-size-large;
+      font-size: $font-size-md;
       font-weight: 500;
       color: $black;
       line-height: 1.4;
       &:hover {
-        color: $red;
+        color: $color-primary;
       }
     }
     &:last-child {
       border-bottom: none;
     }
     &:hover {
-      color: $red;
+      color: $color-primary;
       cursor: pointer;
     }
   }
