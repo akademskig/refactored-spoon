@@ -57,7 +57,11 @@ const Layout = () => {
     <>
       <TopBanner />
       <div className={styles.container}>
-        <Header onSearch={setSearchQuery} clearBookmarks={() => setBookmarks(new Map())} />
+        <Header
+          onSearch={setSearchQuery}
+          clearBookmarks={() => setBookmarks(new Map())}
+          categories={categories}
+        />
         <div className={styles.layout}>
           <Sidebar categories={categories} />
           <main className={styles.mainContent}>

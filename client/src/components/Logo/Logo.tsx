@@ -2,10 +2,11 @@ import styles from './Logo.module.scss';
 
 type Props = {
   center?: boolean;
+  externalStyles?: string;
 };
-const Logo = ({ center }: Props) => {
+const Logo = ({ center, externalStyles }: Props) => {
   return (
-    <div className={`${styles.logo} ${center ? styles.center : ''}`}>
+    <div className={`${styles.logo} ${externalStyles} ${center ? styles.center : ''}`}>
       My<span>News</span>
     </div>
   );

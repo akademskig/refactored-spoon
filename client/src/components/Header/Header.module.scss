@@ -15,59 +15,26 @@ $input-gray: rgb(192, 189, 189);
   background-color: transparent;
   flex-wrap: nowrap;
   gap: 1rem;
+  @include respond-sm {
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    padding: 1rem;
+  }
   .logo {
     margin-right: 2rem;
-  }
-
-  .searchWrapper {
-    display: flex;
-    width: 100%;
-    max-width: 725px;
-    padding: 0.35rem;
-    padding-left: 0.7rem;
-    background-color: $white;
-    border-radius: $button-border-radius;
-    justify-content: center;
-    align-items: center;
-
-    input {
-      flex: 1;
-      padding: 0.5rem 1rem;
-      border: none;
-      font-size: 0.875rem;
-      &:focus {
-        outline: none;
-      }
-      &::placeholder {
-        color: $input-gray;
-        font-size: 0.875rem;
-      }
-    }
-
-    .searchBtn {
-      background: $red;
-      color: $white;
-      border: none;
-      padding: 0.6rem 1rem;
-      border-radius: $button-border-radius;
-      cursor: pointer;
-      font-weight: 600;
-    }
-    .searchIcon {
-      color: $input-gray;
-      svg {
-        width: 1.1rem;
-      }
-    }
   }
 }
 
 .userMenu {
   flex-grow: 1;
   text-align: right;
-  display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
+  @include respond-sm {
+    display: flex;
+    grid-row-start: 1;
+    grid-column-start: 2;
+  }
 }
 
 .authBtn {

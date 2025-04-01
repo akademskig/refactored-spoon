@@ -55,4 +55,8 @@ $gap: 1rem;
   a {
     text-decoration: none;
   }
+
+  @include respond-sm {
+    display: none;
+  }
 }
