@@ -1,12 +1,12 @@
 import { useCallback, useEffect, useState, useMemo } from 'react';
 import api from '../services/api';
 import { Article } from '../types/Article';
-import ArticleCard from '../components/ArticleCard';
+import ArticleCard from '../components/ArticleCard/ArticleCard';
 import { useOutletContext } from 'react-router-dom';
 import { OutletContext } from './Home';
-import EmptyList from './EmptyList';
+import EmptyList from '../components/EmptyList/EmptyList';
 import { Bookmark } from 'lucide-react';
-import Loader from '../components/Loader';
+import Loader from '../components/Loader/Loader';
 
 const Favorites = () => {
   const { toggleBookmark, searchQuery } = useOutletContext<OutletContext>();
