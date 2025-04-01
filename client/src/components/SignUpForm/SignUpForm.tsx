@@ -1,32 +1,21 @@
 import { useState } from 'react';
 import api from '../../services/api';
-import { AxiosError } from 'axios';
 import AuthForm from '../AuthForm/AuthForm';
 import { FormTypeEnum } from '../AuthForm/FormTypeEnum';
 
 const SignUpForm = () => {
   const [form, setForm] = useState({ email: '', password: '', firstName: '', lastName: '' });
-  const [error, setError] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    try {
-      await api.post('/signup', form);
-      setError('Check your email to verify your account');
-    } catch (err: unknown) {
-      if (err instanceof AxiosError && err.response?.data?.msg) {
-        setError(err.response.data.msg);
-      } else {
-        setError('SignIn failed');
-      }
-    }
+    await api.post('/signup', form);
   };
 
   return (
-    <AuthForm formType={FormTypeEnum.SIGNUP} onSubmit={handleSubmit} error={error}>
+    <AuthForm formType={FormTypeEnum.SIGNUP} onSubmit={handleSubmit}>
       <input
         name="firstName"
         type="text"
