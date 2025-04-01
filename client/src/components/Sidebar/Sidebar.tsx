@@ -17,6 +17,7 @@ import {
 import styles from './Sidebar.module.scss';
 import { NavLink, useLocation, useParams } from 'react-router-dom';
 import { SIDEBAR_ITEMS } from './sidebarItems';
+import { useAuth } from '../../hooks/useAuth';
 
 const ICONS: Record<string, JSX.Element> = {
   home: <Home />,
@@ -43,6 +44,7 @@ const toUppercase = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 const Sidebar = ({ categories }: Props) => {
   const { slug } = useParams();
   const { pathname } = useLocation();
+  const { user } = useAuth();
 
   return (
     <aside className={styles.sidebar}>
@@ -61,12 +63,14 @@ const Sidebar = ({ categories }: Props) => {
             </button>
           </NavLink>
         ))}
-        <NavLink to={SIDEBAR_ITEMS.favorites.route}>
-          <button className={pathname === SIDEBAR_ITEMS.favorites.route ? styles.active : ''}>
-            <BookMarked />
-            {toUppercase(SIDEBAR_ITEMS.favorites.name)}
-          </button>
-        </NavLink>
+        {user && (
+          <NavLink to={SIDEBAR_ITEMS.favorites.route}>
+            <button className={pathname === SIDEBAR_ITEMS.favorites.route ? styles.active : ''}>
+              <BookMarked />
+              {toUppercase(SIDEBAR_ITEMS.favorites.name)}
+            </button>
+          </NavLink>
+        )}
       </nav>
     </aside>
   );
