@@ -3,6 +3,13 @@
 .container {
   max-width: 1150px;
   margin: auto;
+  padding: $padding-layout-lg;
+  @include respond-md {
+    padding: 1.5rem;
+  }
+  @include respond-sm {
+    padding: 1rem;
+  }
 }
 
 .layout {
@@ -10,11 +17,13 @@
   background: $color-bg-gray;
   min-height: 100vh;
   align-items: flex-start;
+  gap: 1rem;
 }
 
 .mainContent {
   display: grid;
   gap: 1.5rem;
+  padding: 1.5rem 0;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   grid-template-rows: min-content;
   @include respond-md {
@@ -22,7 +31,6 @@
     gap: 1rem;
   }
   @include respond-sm {
-    padding: 1rem;
     grid-template-columns: 1fr;
     gap: 1rem;
   }

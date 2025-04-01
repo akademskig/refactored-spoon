@@ -11,15 +11,16 @@ $input-gray: rgb(192, 189, 189);
   border-bottom: 1px solid $color-border;
   display: flex;
   align-items: center;
-  padding: 1rem 1.5rem;
+  padding-bottom: $padding-layout-md;
   background-color: transparent;
   flex-wrap: nowrap;
   gap: 1rem;
   @include respond-sm {
     display: grid;
     grid-template-columns: 4fr 1fr;
-    padding: 1rem;
+    padding-bottom:$padding-layout-sm;
   }
+
   .logo {
     margin-right: 2rem;
   }
