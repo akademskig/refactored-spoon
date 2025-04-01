@@ -22,7 +22,7 @@ const TopBanner = () => {
     <div className={`${styles.topBanner} ${closing ? styles.closing : ''}`}>
       <div className={styles.bannerText}>
         <span className={styles.first}>{title}</span>
-        <span>{description}</span>
+        <span className={styles.second}>{description}</span>
       </div>
       <div className={styles.buttons}>
         <button className={styles.noBtn} onClick={handleDismiss}>

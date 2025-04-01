@@ -15,7 +15,6 @@
 .layout {
   display: flex;
   background: $color-bg-gray;
-  min-height: 100vh;
   align-items: flex-start;
   gap: 1rem;
 }
@@ -31,7 +30,14 @@
     gap: 1rem;
   }
   @include respond-sm {
-    grid-template-columns: 1fr;
-    gap: 1rem;
+    display: none;
+  }
+}
+
+.mobileMainContent {
+  display: none;
+  padding: 1.5rem 0;
+  @include respond-sm {
+    display: block;
   }
 }

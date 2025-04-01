@@ -25,7 +25,12 @@ $font-size-time: 0.6rem;
   padding: $padding-root;
 
   @include respond-md {
-    display: none;
+    grid-column-start: 2;
+    grid-row-start: 1;
+    grid-row-end: 3;
+  }
+  @include respond-sm {
+    padding: $padding-root;
   }
 
   .scrollArea {
@@ -108,6 +113,20 @@ $font-size-time: 0.6rem;
   .scrollTrigger {
     height: 1px;
     margin-bottom: 5px;
+  }
+}
+
+.desktop {
+  @include respond-sm {
+    display: none;
+  }
+}
+.mobile {
+  padding: $padding-lg;
+  max-height: calc(100vh - 330px); // subtract estimated header + padding
+  overflow-y: auto;
+  @include respond-xs {
+    max-height: calc(100vh - 345px);
   }
 }
 .scrollArea::-webkit-scrollbar {

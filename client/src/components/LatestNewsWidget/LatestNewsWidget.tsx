@@ -11,7 +11,10 @@ type Article = {
 const title = 'Latest news';
 const description = 'See all news';
 
-const LatestNewsWidget = () => {
+type Props = {
+  mobile?: boolean;
+};
+const LatestNewsWidget = ({ mobile }: Props) => {
   const [latest, setLatest] = useState<Article[]>([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
@@ -51,7 +54,7 @@ const LatestNewsWidget = () => {
   }, [hasMore]);
 
   return (
-    <div className={styles.root}>
+    <div className={`${styles.root} ${mobile ? styles.mobile : styles.desktop}`}>
       <h3>
         <span className={styles.dotOuter}>
           <span className={styles.dotInner} />
@@ -59,8 +62,8 @@ const LatestNewsWidget = () => {
         {title}
       </h3>
       <ul className={styles.scrollArea}>
-        {latest.map((article) => (
-          <li key={`widget_${article.id}`}>
+        {latest.map((article, i) => (
+          <li key={`${i}_${article.id}`}>
             <span>
               {new Date(article.published_date).toLocaleTimeString([], {
                 hour: '2-digit',

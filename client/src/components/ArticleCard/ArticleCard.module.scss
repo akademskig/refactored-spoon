@@ -56,7 +56,6 @@ $margin-medium: 0.5rem;
       -webkit-line-clamp: 2;
       line-clamp: 2;
       overflow: hidden;
-      height: 40px;
       text-overflow: ellipsis;
       @include respond-md {
         font-size: $font-size-medium;

@@ -10,6 +10,7 @@ $red: #bb1e1e;
 $red-rgb: rgb(187, 30, 30);
 $color-border: #ddd;
 // Breakpoints
+$breakpoint-xs: 420px;
 $breakpoint-sm: 620px;
 $breakpoint-md: 862px;
 $breakpoint-lg: 1024px;
@@ -27,6 +28,11 @@ $padding-lg: 1rem;
 $padding-md: 0.75rem;
 
 //Mixins
+@mixin respond-xs {
+  @media (max-width: $breakpoint-xs) {
+    @content;
+  }
+}
 @mixin respond-sm {
   @media (max-width: $breakpoint-sm) {
     @content;

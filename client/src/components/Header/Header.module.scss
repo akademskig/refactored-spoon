@@ -18,7 +18,7 @@ $input-gray: rgb(192, 189, 189);
   @include respond-sm {
     display: grid;
     grid-template-columns: 4fr 1fr;
-    padding-bottom:$padding-layout-sm;
+    padding-bottom: $padding-layout-sm;
   }
 
   .logo {

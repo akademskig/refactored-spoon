@@ -10,6 +10,7 @@ import Header from '../Header/Header';
 import Sidebar from '../Sidebar/Sidebar';
 import LatestNewsWidget from '../LatestNewsWidget/LatestNewsWidget';
 import Toast from '../Toast/Toast';
+import ArticleTabs from '../ArticleTabs/ArticleTabs';
 
 const Layout = () => {
   const [articles, setArticles] = useState<Article[]>([]);
@@ -67,8 +68,14 @@ const Layout = () => {
           <main className={styles.mainContent}>
             <Outlet context={{ articles, searchQuery, bookmarks, toggleBookmark }} />
             <LatestNewsWidget />
-            <Toast />
           </main>
+          <main className={styles.mobileMainContent}>
+            <ArticleTabs
+              latest={<LatestNewsWidget mobile />}
+              featured={<Outlet context={{ articles, searchQuery, bookmarks, toggleBookmark }} />}
+            />
+          </main>
+          <Toast />
         </div>
       </div>
     </>

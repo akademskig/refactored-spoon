@@ -23,11 +23,18 @@
 
 .authModal {
   background: $white;
-  padding: 2rem;
+  padding: $padding-layout-lg;
   border-radius: 12px;
   width: 90%;
   max-width: 400px;
   position: relative;
+  margin: 1rem;
+  @include respond-md {
+    padding: $padding-layout-md;
+  }
+  @include respond-sm {
+    padding: $padding-layout-sm;
+  }
 }
 
 .closeBtn {
