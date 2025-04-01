@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import styles from './LatestNewsWidget.module.scss';
 import api from '../../services/api';
+import Loader from '../Loader/Loader';
+import EmptyList from '../EmptyList/EmptyList';
+import { Scroll } from 'lucide-react';
 
 type Article = {
   id: string;
@@ -18,12 +21,13 @@ const LatestNewsWidget = ({ mobile }: Props) => {
   const [latest, setLatest] = useState<Article[]>([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
+  const [loading, setLoading] = useState(true);
   const observerRef = useRef<HTMLDivElement | null>(null);
 
   // Fetch articles
   const fetchArticles = useCallback(async () => {
     try {
-      const res = await api.get('/articles', { params: { page } });
+      const res = await api.get('/latest-articles', { params: { page } });
       if (res.data.length === 0) {
         setHasMore(false);
       } else {
@@ -31,6 +35,8 @@ const LatestNewsWidget = ({ mobile }: Props) => {
       }
     } catch (err) {
       console.error('Failed to fetch latest news', err);
+    } finally {
+      setLoading(false);
     }
   }, [page]);
 
@@ -62,17 +68,24 @@ const LatestNewsWidget = ({ mobile }: Props) => {
         {title}
       </h3>
       <ul className={styles.scrollArea}>
-        {latest.map((article, i) => (
-          <li key={`${i}_${article.id}`}>
-            <span>
-              {new Date(article.published_date).toLocaleTimeString([], {
-                hour: '2-digit',
-                minute: '2-digit',
-              })}
-            </span>
-            <p>{article.title}</p>
-          </li>
-        ))}
+        {latest.length === 0 && !loading && (
+          <EmptyList subtitle="No articles found" icon={<Scroll size={60} />} />
+        )}
+        {!loading ? (
+          latest.map((article, i) => (
+            <li key={`${i}_${article.id}`}>
+              <span>
+                {new Date(article.published_date).toLocaleTimeString([], {
+                  hour: '2-digit',
+                  minute: '2-digit',
+                })}
+              </span>
+              <p>{article.title}</p>
+            </li>
+          ))
+        ) : (
+          <Loader />
+        )}
         {hasMore && <div ref={observerRef} className={styles.scrollTrigger} />}
       </ul>
 
