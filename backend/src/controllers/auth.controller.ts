@@ -50,7 +50,7 @@ export const verifyEmail = async (req: Request, res: Response) => {
     }
 
     if (user.verified) {
-      return handleError(res, 400, 'User already verified');
+      return handleError(res, 200, 'User already verified');
     }
 
     user.verified = true;
@@ -69,6 +69,9 @@ export const signin = async (req: Request, res: Response) => {
 
   try {
     const user = await UserModel.findOne({ email });
+    if(!user){
+      return handleError(res, 401, 'User not found');
+    }
     if (!user || !(await bcrypt.compare(password, user.hashedPassword))) {
       return handleError(res, 401, 'Invalid credentials');
     }
