@@ -1,0 +1,78 @@
+@use '../../styles/variables' as *;
+
+.trigger {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: right;
+  @include respond-sm {
+    display: block;
+    margin-left: 1rem;
+  }
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: #f7f7f7;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1.5rem;
+  overflow-y: auto;
+  display: none;
+  @include respond-sm {
+    display: block;
+  }
+}
+
+.close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #111;
+}
+
+.logo {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.item {
+  background: none;
+  text-align: center;
+  font-size: 0.875rem;
+  color: #666;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  text-decoration: none;
+  padding: 0.75rem;
+
+  &:hover {
+    color: #d40000;
+  }
+}
+
+.active {
+  background: white;
+  color: #d40000;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.seachWrapper {
+  margin-bottom: 2rem;
+}
