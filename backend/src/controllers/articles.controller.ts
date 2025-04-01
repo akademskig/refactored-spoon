@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import { fetchNewsApiArticles } from '../utils/fetchNewsApi';
-import { fetchNYTArticles } from '../utils/fetchNYT';
+import { fetchNewsApi } from '../utils/fetchNewsApi';
+import { fetchNYT } from '../utils/fetchNYT';
 import {
   NEWS_API_ARTICLES_CACHE_KEY,
   NYT_ARTICLES_CACHE_KEY,
@@ -16,7 +16,7 @@ export const getArticles = async (req: Request, res: Response) => {
 
     let nytArticles = shouldForceRefresh ? null : getCache<Article[]>(NYT_ARTICLES_CACHE_KEY);
     if (!nytArticles) {
-      const nytResponse = await fetchNYTArticles();
+      const nytResponse = await fetchNYT();
       nytArticles = nytResponse.sort(
         (a, b) => new Date(b.published_date).getTime() - new Date(a.published_date).getTime(),
       );
@@ -37,13 +37,12 @@ export const getLatestArticles = async (req: Request, res: Response) => {
       ? null
       : getCache<Article[]>(NEWS_API_ARTICLES_CACHE_KEY(+page));
     if (!newsApiArticles) {
-      const newsApiResponse = await fetchNewsApiArticles({ page: +page });
+      const newsApiResponse = await fetchNewsApi({ page: +page });
       // lates articles first
       newsApiArticles = newsApiResponse.sort(
         (a, b) => new Date(b.published_date).getTime() - new Date(a.published_date).getTime(),
       );
       setCache(NEWS_API_ARTICLES_CACHE_KEY(+page), newsApiArticles, 300);
-      console.log(newsApiArticles);
     }
 
     res.json(newsApiArticles);

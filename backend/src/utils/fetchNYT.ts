@@ -28,7 +28,7 @@ const mapArticle = (article: any): Article => {
   };
 };
 
-export const fetchNYTArticles = async (): Promise<Article[]> => {
+export const fetchNYT = async (): Promise<Article[]> => {
   try {
     const res = await axios.get(`${NYT_API_URL}?api-key=${process.env.NYT_API_KEY}`);
     return res.data.results.map(mapArticle);

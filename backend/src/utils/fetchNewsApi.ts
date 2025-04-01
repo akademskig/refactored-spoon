@@ -20,7 +20,7 @@ const mapArticle = (article: any, i: number): Article => ({
 });
 
 // Main Function
-export const fetchNewsApiArticles = async ({ page }: { page: number }): Promise<Article[]> => {
+export const fetchNewsApi = async ({ page }: { page: number }): Promise<Article[]> => {
   const NEWS_API_KEY = process.env.NEWS_API_KEY;
 
   try {
