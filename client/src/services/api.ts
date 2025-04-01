@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ToastEvent } from '../components/Toast';
+import { ToastEvent } from '../components/Toast/Toast';
 
 export const AUTH_ERROR = 'auth-error';
 
@@ -17,6 +17,15 @@ api.interceptors.response.use(
           detail: {
             message: 'Please sign in to continue',
             type: 'info',
+          },
+        }),
+      );
+    } else {
+      window.dispatchEvent(
+        new CustomEvent<ToastEvent>('toast', {
+          detail: {
+            message: 'An unexpected error occurred. Try reloading the page or come back later.',
+            type: 'error',
           },
         }),
       );
