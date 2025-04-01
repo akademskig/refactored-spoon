@@ -6,7 +6,7 @@ type Props = {
   icon?: React.ReactNode;
 };
 
-const EmptyList = ({ title = 'Nothing here yet', subtitle = '', icon }: Props) => {
+const EmptyList = ({ title = '', subtitle = '', icon }: Props) => {
   return (
     <div className={styles.empty}>
       {icon && <div className={styles.icon}>{icon}</div>}

@@ -4,7 +4,7 @@ $max-width-widget: 360px;
 $dot-size: 22px;
 $box-shadow-root: 0 1px 3px rgba(0, 0, 0, 0.05);
 $border: 1px solid $color-border-light;
-$padding-root: $spacing-lg $spacing-xl $spacing-sm 0.65rem $spacing-lg;
+$padding-root: $spacing-lg $spacing-xxs $spacing-sm $spacing-lg;
 
 .root {
   background: $color-bg-light;
@@ -15,6 +15,7 @@ $padding-root: $spacing-lg $spacing-xl $spacing-sm 0.65rem $spacing-lg;
   grid-row-start: 1;
   grid-row-end: 3;
   max-height: 550px;
+  min-height: 550px;
   box-shadow: $box-shadow-root;
   border: $border;
   padding: $padding-root;
