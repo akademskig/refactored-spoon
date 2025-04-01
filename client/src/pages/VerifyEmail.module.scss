@@ -1,0 +1,32 @@
+@use '../styles/variables' as *;
+
+.container {
+  max-width: 480px;
+  margin: 5rem auto;
+  padding: $spacing-xl;
+  background: $color-bg-light;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+.message {
+  font-size: $font-size-lg;
+  color: $color-text-dark;
+}
+
+.success {
+  color: green;
+
+  h2 {
+    margin-bottom: 0.5rem;
+  }
+}
+
+.error {
+  color: $color-primary;
+
+  h2 {
+    margin-bottom: 0.5rem;
+  }
+}
