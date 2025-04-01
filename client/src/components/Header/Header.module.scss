@@ -28,12 +28,13 @@ $input-gray: rgb(192, 189, 189);
 .userMenu {
   flex-grow: 1;
   text-align: right;
-  justify-content: space-between;
+  display: flex;
   align-items: center;
+  justify-content: flex-end;
   @include respond-sm {
-    display: flex;
     grid-row-start: 1;
     grid-column-start: 2;
+    justify-content: space-between;
   }
 }
 
