@@ -38,7 +38,7 @@ describe('getLatestArticles', () => {
   });
 
   it('should fetch and cache articles if no cache is available', async () => {
-    const newsApiArticles: Pick<Article,"title" | "published_date">[] = [
+    const newsApiArticles: Pick<Article, 'title' | 'published_date'>[] = [
       { title: 'News API Article', published_date: '2023-01-02' },
     ];
     (getCache as jest.Mock).mockReturnValue(null);
@@ -63,7 +63,7 @@ describe('getLatestArticles', () => {
 
   it('should fetch articles for the specified page', async () => {
     const page = 2;
-    const newsApiArticles: Pick<Article,"title" | "published_date">[]= [
+    const newsApiArticles: Pick<Article, 'title' | 'published_date'>[] = [
       { title: 'News API Article', published_date: '2023-01-02' },
     ];
     req.query = req.query ?? {};
@@ -89,7 +89,7 @@ describe('getLatestArticles', () => {
   });
 
   it('should force refresh and fetch new articles if forceRefresh is true', async () => {
-    const newsApiArticles:Pick<Article,"title" | "published_date">[] = [
+    const newsApiArticles: Pick<Article, 'title' | 'published_date'>[] = [
       { title: 'News API Article', published_date: '2023-01-02' },
     ];
     req.query = req.query ?? {};
