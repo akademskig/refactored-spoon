@@ -33,6 +33,15 @@
     npm run build
     npm start
 
+
+### 🔐 Environment Variables
+
+Before running the app, copy the `.env.example` files and fill in your secrets:
+
+```bash
+cp .env.example .env
+```
+
 ---
 
 ## Design Decisions
