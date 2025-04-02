@@ -1,22 +1,5 @@
-import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
-import { BrowserRouter } from 'react-router-dom';
 import './styles/main.scss';
-import { ModalProvider } from './providers/ModalProvider.tsx';
-import { AuthProvider } from './providers/AuthProvider.tsx';
-import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary.tsx';
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <ErrorBoundary>
-      <AuthProvider>
-        <ModalProvider>
-          <BrowserRouter>
-            <App />
-          </BrowserRouter>
-        </ModalProvider>
-      </AuthProvider>
-    </ErrorBoundary>
-  </StrictMode>,
-);
+createRoot(document.getElementById('root')!).render(<App />);
