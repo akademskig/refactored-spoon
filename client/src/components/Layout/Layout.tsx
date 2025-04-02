@@ -12,6 +12,16 @@ import LatestNewsWidget from '../LatestNewsWidget/LatestNewsWidget';
 import Toast from '../Toast/Toast';
 import ArticleTabs from '../ArticleTabs/ArticleTabs';
 
+// Utility function to get unique categories
+const getUniqueCategories = (articles: Article[]): string[] => {
+  return Array.from(new Set(articles.map((article) => article.category)));
+};
+
+// Utility function to map bookmarks
+const mapBookmarks = (bookmarks: Bookmark[]): Map<string, Bookmark> => {
+  return new Map(bookmarks.map((b) => [b.article.url, b]));
+};
+
 const Layout = () => {
   const [articles, setArticles] = useState<Article[]>([]);
   const [categories, setCategories] = useState<string[]>([]);
@@ -25,34 +35,39 @@ const Layout = () => {
       const res = await api.get('/articles');
       const fetchedArticles = res.data;
       setArticles(fetchedArticles);
-
-      const uniqueCategories: string[] = Array.from(
-        new Set(fetchedArticles.map((article: Article) => article.category)),
-      );
-      setCategories(uniqueCategories);
+      setCategories(getUniqueCategories(fetchedArticles));
     } catch (error) {
       console.error('Error fetching articles:', error);
     }
   }, []);
 
-  const fetchBookmarks = async () => {
-    const res = await api.get('/bookmarks');
-    const bookmarkMap = new Map<string, Bookmark>(
-      res.data.map((b: Bookmark) => [b.article.url, b]),
-    );
-    setBookmarks(bookmarkMap);
-  };
+  const fetchBookmarks = useCallback(async () => {
+    try {
+      const res = await api.get('/bookmarks');
+      setBookmarks(mapBookmarks(res.data));
+    } catch (error) {
+      console.error('Error fetching bookmarks:', error);
+    }
+  }, []);
 
-  const toggleBookmark = async (article: Article) => {
-    await api.post('/bookmark', article);
-    fetchBookmarks(); // re-fetch the updated list
-  };
+  const toggleBookmark = useCallback(
+    async (article: Article) => {
+      try {
+        await api.post('/bookmark', article);
+        fetchBookmarks(); // Re-fetch the updated list
+      } catch (error) {
+        console.error('Error toggling bookmark:', error);
+      }
+    },
+    [fetchBookmarks],
+  );
+
   useEffect(() => {
     if (user) {
       fetchBookmarks();
     }
     fetchArticles();
-  }, [fetchArticles, user]);
+  }, [fetchArticles, fetchBookmarks, user]);
 
   return (
     <>

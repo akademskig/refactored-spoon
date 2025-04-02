@@ -1,6 +1,7 @@
+import { BookmarkPlus, BookmarkMinus } from 'lucide-react';
 import { Article } from '../../types/Article';
 import styles from './ArticleCard.module.scss';
-import { BookmarkPlus, BookmarkMinus } from 'lucide-react';
+
 type Props = {
   article: Article;
   toggleBookmark: (article: Article) => void;
