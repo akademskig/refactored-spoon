@@ -25,7 +25,7 @@ export const setCache = <T>(key: string, data: T, ttlSeconds = 300) => {
 
 /**
  * Retrieves a cached value by its key.
- * 
+ *
  * @template T - The expected type of the cached data.
  * @param {string} key - The key associated with the cached value.
  * @returns {T | null} - The cached data if it exists and has not expired, or `null` if the key does not exist or the cache has expired.
