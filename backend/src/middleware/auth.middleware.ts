@@ -1,8 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
-import jwt from 'jsonwebtoken';
 import { AuthRequest } from '../types/AuthRequest';
 import { ReqUser } from '../types/ReqUser';
-import config from '../config';
+import { verifyToken } from '../utils/verifyToken';
 
 const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
   const token = req.cookies.accessToken;
@@ -12,7 +11,7 @@ const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
   }
 
   try {
-    const decoded = jwt.verify(token, config.JWT_SECRET!);
+    const decoded = verifyToken(token, 'signin');
     (req as AuthRequest).user = decoded as ReqUser;
     next();
   } catch {

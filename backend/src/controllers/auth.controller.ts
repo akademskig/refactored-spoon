@@ -26,7 +26,7 @@ export const signup = async (req: Request, res: Response) => {
       verified: false,
     });
 
-    const verificationToken = generateToken({ userId: user._id }, '24h');
+    const verificationToken = generateToken({ userId: user._id }, '24h', 'email');
 
     await user.save();
     sendVerificationEmail(email, verificationToken);
@@ -43,7 +43,7 @@ export const verifyEmail = async (req: Request, res: Response) => {
   const { token } = req.params;
 
   try {
-    const decoded = verifyToken<{ userId: string }>(token);
+    const decoded = verifyToken<{ userId: string }>(token, 'email');
     const user = await UserModel.findById(decoded.userId);
 
     if (!user) {
@@ -77,7 +77,7 @@ export const signin = async (req: Request, res: Response) => {
       return handleError(res, 401, 'Invalid credentials');
     }
 
-    const token = generateToken({ id: user.id }, '1d');
+    const token = generateToken({ id: user.id }, '1d', 'signin');
     const { firstName, lastName } = user.toJSON();
 
     res

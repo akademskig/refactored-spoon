@@ -1,6 +1,11 @@
-import jwt from 'jsonwebtoken';
+import jwt, { Secret } from 'jsonwebtoken';
 import config from '../config';
 
-export const generateToken = (payload: object, expiresIn: string): string => {
-  return jwt.sign(payload, config.JWT_SECRET, { expiresIn });
+export type TokenType = 'signin' | 'email';
+
+export const generateToken = (payload: object, expiresIn: string, tokenType: TokenType): string => {
+  const secret: Secret =
+    tokenType === 'signin' ? config.JWT_SECRET : config.EMAIL_VERIFICATION_SECRET;
+  // @ts-ignore
+  return jwt.sign(payload, secret, { expiresIn });
 };
