@@ -17,7 +17,7 @@ type Props = {
 const Header = ({ onSearch, clearBookmarks, categories }: Props) => {
   const { open } = useModal();
   const { user, logout } = useAuth();
-  // Handle input change with useCallback for optimization
+
   const handleLogout = useCallback(() => {
     logout();
     clearBookmarks();

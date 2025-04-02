@@ -38,6 +38,7 @@ $input-gray: rgb(192, 189, 189);
     border: none;
     padding: $spacing-sm $spacing-md;
     border-radius: $border-radius-md;
+    text-transform: capitalize;
     cursor: pointer;
     font-weight: $font-weight-bold;
     @include respond-sm {

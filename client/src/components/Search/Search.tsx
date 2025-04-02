@@ -33,7 +33,7 @@ export const SearchBar = ({ onSearch }: Props) => {
       </span>
       <input type="text" placeholder="Search news" value={input} onChange={handleSetInput} />
       <button type="submit" className={styles.searchBtn}>
-        Search
+        SEARCH
       </button>
     </form>
   );
