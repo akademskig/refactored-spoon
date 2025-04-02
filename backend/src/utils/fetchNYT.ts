@@ -2,13 +2,18 @@ import axios from 'axios';
 import { Article } from '../types/Article';
 import config from '../config';
 
-// Constants
 const DEFAULT_CATEGORY = 'General';
 const DEFAULT_AUTHOR = 'New York Times';
 const IMAGE_FORMAT = 'threeByTwoSmallAt2X';
 const NYT_API_URL = 'https://api.nytimes.com/svc/topstories/v2/home.json';
 
-// Utility Functions
+/**
+ * Generates a default image URL using the provided seed.
+ * The URL points to a placeholder image from Picsum Photos with a resolution of 400x200 pixels.
+ *
+ * @param seed - A string used to generate a unique image URL.
+ * @returns The generated image URL as a string.
+ */
 const getDefaultImageUrl = (seed: string): string =>
   `https://picsum.photos/seed/nyt${seed}/400/200`;
 
@@ -29,6 +34,12 @@ const mapArticle = (article: any): Article => {
   };
 };
 
+/**
+ * Fetches articles from the New York Times (NYT) API.
+ *
+ * @returns {Promise<Article[]>} A promise that resolves to an array of articles.
+ * @throws {Error} Throws an error if the fetch operation fails.
+ */
 export const fetchNYT = async (): Promise<Article[]> => {
   try {
     const res = await axios.get(`${NYT_API_URL}?api-key=${config.NYT_API_KEY}`);

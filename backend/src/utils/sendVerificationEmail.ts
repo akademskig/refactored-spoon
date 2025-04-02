@@ -2,6 +2,12 @@ import sgMail from '@sendgrid/mail';
 import config from '../config';
 sgMail.setApiKey(config.SENDGRID_API_KEY);
 
+/**
+ * Sends a verification email to the specified email address with a verification link.
+ *
+ * @param email - The recipient's email address.
+ * @param token - The unique verification token to be included in the verification link.
+ */
 export const sendVerificationEmail = async (email: string, token: string) => {
   const baseUrl = config.CLIENT_URL;
   const link = `${baseUrl}/verify/${token}`;
