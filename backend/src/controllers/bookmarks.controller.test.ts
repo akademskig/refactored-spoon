@@ -4,8 +4,6 @@ import { Bookmark } from '../db/models/Bookmark';
 import { Article } from '../db/models/Article';
 import { AuthRequest } from '../types/AuthRequest';
 
-// filepath: backend/src/controllers/bookmarks.controller.test.ts
-
 jest.mock('../db/models/Bookmark');
 jest.mock('../db/models/Article');
 
