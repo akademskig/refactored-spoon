@@ -1,6 +1,6 @@
 @use '../../styles/variables' as *;
 
-.authModalOverlay {
+.modalOverlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -21,7 +21,7 @@
   opacity: 0;
 }
 
-.authModal {
+.modal {
   background: $white;
   padding: $padding-layout-lg;
   border-radius: 12px;
@@ -39,9 +39,9 @@
 
 .closeBtn {
   position: absolute;
-  top: 0.5rem;
+  top: $spacing-md;
   right: $font-size-xs;
-  font-size: 1.5rem;
+  font-size: $font-size-lg;
   background: none;
   border: none;
   cursor: pointer;

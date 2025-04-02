@@ -1,9 +1,10 @@
+import { X } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
 import SignInForm from '../SignInForm/SignInForm';
 import SignUpForm from '../SignUpForm/SignUpForm';
 import styles from './Modal.module.scss';
 import { useModal } from '../../hooks/useModal';
 import Logo from '../Logo/Logo';
-import { useEffect, useRef, useState } from 'react';
 import { ModalViewEnum } from './ModalViewEnum';
 
 const Modal = () => {
@@ -38,14 +39,14 @@ const Modal = () => {
 
   return (
     <div
-      className={`${styles.authModalOverlay} ${isOpening ? styles.opening : ''}${isClosing ? styles.closing : ''}`}
+      className={`${styles.modalOverlay} ${isOpening ? styles.opening : ''}${isClosing ? styles.closing : ''}`}
     >
-      <div className={styles.authModal} ref={modalRef}>
+      <div className={styles.modal} ref={modalRef}>
         <div className={styles.logoWrapper}>
           <Logo center />
         </div>
         <button className={styles.closeBtn} onClick={close}>
-          ×
+          <X />
         </button>
         {modal === ModalViewEnum.SIGNIN ? <SignInForm /> : <SignUpForm />}
       </div>
