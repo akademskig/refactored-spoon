@@ -1,16 +1,15 @@
 import express from 'express';
 import cors from 'cors';
-import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 import routes from './routes';
 import { connectMongo } from './db/connectMongo';
+import config from './config';
 
-dotenv.config();
 const app = express();
 
 const allowedOrigins = [
-  process.env.CLIENT_URL || 'http://localhost:5173',
-  'http://localhost:3000', // for tests
+  config.CLIENT_URL,
+  config.TEST_CLIENT_URL, // For tests
 ];
 
 app.use(
@@ -31,5 +30,4 @@ app.use(express.json());
 connectMongo();
 app.use('/api', routes);
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(config.PORT, () => console.log(`Server running on port ${config.PORT}`));

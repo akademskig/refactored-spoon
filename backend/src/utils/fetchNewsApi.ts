@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { Article } from '../types/Article';
+import config from '../config';
 
 // Constants
 const NEWS_API_URL = 'https://newsapi.org/v2/top-headlines';
@@ -21,7 +22,7 @@ const mapArticle = (article: any, i: number): Article => ({
 
 // Main Function
 export const fetchNewsApi = async ({ page }: { page: number }): Promise<Article[]> => {
-  const NEWS_API_KEY = process.env.NEWS_API_KEY;
+  const NEWS_API_KEY = config.NEWS_API_KEY;
 
   try {
     const res = await axios.get(NEWS_API_URL, {

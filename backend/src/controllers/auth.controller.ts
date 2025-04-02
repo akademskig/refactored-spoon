@@ -5,6 +5,7 @@ import { handleError } from '../utils/handleError';
 import { sendVerificationEmail } from '../utils/sendVerificationEmail';
 import { verifyToken } from '../utils/verifyToken';
 import { UserModel } from '../db/models/User';
+import config from '../config';
 
 // Signup controller
 export const signup = async (req: Request, res: Response) => {
@@ -82,7 +83,7 @@ export const signin = async (req: Request, res: Response) => {
     res
       .cookie('accessToken', token, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
+        secure: config.NODE_ENV === 'production',
         sameSite: 'strict',
         maxAge: 24 * 60 * 60 * 1000, // 1 day
       })

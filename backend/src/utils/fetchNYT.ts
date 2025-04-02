@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { Article } from '../types/Article';
+import config from '../config';
 
 // Constants
 const DEFAULT_CATEGORY = 'General';
@@ -30,7 +31,7 @@ const mapArticle = (article: any): Article => {
 
 export const fetchNYT = async (): Promise<Article[]> => {
   try {
-    const res = await axios.get(`${NYT_API_URL}?api-key=${process.env.NYT_API_KEY}`);
+    const res = await axios.get(`${NYT_API_URL}?api-key=${config.NYT_API_KEY}`);
     return res.data.results.map(mapArticle);
   } catch (error) {
     console.error('Error fetching NYT articles:', error);

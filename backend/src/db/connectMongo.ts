@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import config from '../config';
 
 const MAX_RETRIES = 5; // Maximum number of retry attempts
 const RETRY_DELAY = 5000; // Delay between retries in milliseconds (5 seconds)
@@ -8,7 +9,7 @@ export const connectMongo = async () => {
 
   while (retries < MAX_RETRIES) {
     try {
-      await mongoose.connect(process.env.MONGO_URI!);
+      await mongoose.connect(config.MONGO_URI!);
       console.log('✅ MongoDB connected');
       return; // Exit the function if the connection is successful
     } catch (error) {

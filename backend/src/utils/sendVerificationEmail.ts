@@ -1,15 +1,14 @@
 import sgMail from '@sendgrid/mail';
-import dotenv from 'dotenv';
-dotenv.config();
-sgMail.setApiKey(process.env.SG_API_KEY_2!);
+import config from '../config';
+sgMail.setApiKey(config.SENDGRID_API_KEY);
 
 export const sendVerificationEmail = async (email: string, token: string) => {
-  const baseUrl = process.env.CLIENT_URL || 'http://localhost:5173';
+  const baseUrl = config.CLIENT_URL;
   const link = `${baseUrl}/verify/${token}`;
 
   const msg = {
     to: email,
-    from: process.env.SENDGRID_FROM_EMAIL!,
+    from: config.SENDGRID_FROM_EMAIL,
     subject: 'Verify your email - MyNews',
     html: `
       <div style="font-family: sans-serif;">
