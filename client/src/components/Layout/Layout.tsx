@@ -57,7 +57,7 @@ const Layout = () => {
   return (
     <>
       <TopBanner />
-      <div className={styles.container}>
+      <div className={styles.container} data-testid="layout-container">
         <Header
           onSearch={setSearchQuery}
           clearBookmarks={() => setBookmarks(new Map())}
