@@ -3,7 +3,7 @@ type CacheItem<T> = {
   expiry: number;
 };
 
-const cache: Record<string, CacheItem<any>> = {};
+const cache: Record<string, CacheItem<unknown>> = {};
 
 export const NYT_ARTICLES_CACHE_KEY = 'nyt_articles';
 export const NEWS_API_ARTICLES_CACHE_KEY = (page: number) => `nyt_articles_${page}`;
@@ -36,5 +36,5 @@ export const getCache = <T>(key: string): T | null => {
     delete cache[key];
     return null;
   }
-  return cached.data;
+  return cached.data as T;
 };

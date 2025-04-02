@@ -20,8 +20,18 @@ const getDefaultImageUrl = (seed: string): string =>
 const formatAuthor = (byline: string | undefined): string =>
   byline?.replace(/^By\s+/i, '') || DEFAULT_AUTHOR;
 
-const mapArticle = (article: any): Article => {
-  const multimedia = article.multimedia?.find((m: any) => m.format === IMAGE_FORMAT);
+interface NYTArticle {
+  url: string;
+  title: string;
+  abstract: string;
+  published_date: string;
+  section?: string;
+  byline?: string;
+  multimedia?: { format: string; url: string }[];
+}
+
+const mapArticle = (article: NYTArticle): Article => {
+  const multimedia = article.multimedia?.find((m) => m.format === IMAGE_FORMAT);
   return {
     id: `nyt_${article.url}`,
     url: article.url,

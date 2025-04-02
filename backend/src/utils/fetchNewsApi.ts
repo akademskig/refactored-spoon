@@ -22,7 +22,17 @@ const getDefaultImageUrl = (seed: string) => `https://picsum.photos/seed/newsapi
  *   - `image` defaults to a value from `getDefaultImageUrl` if `article.urlToImage` is not available.
  *   - `author` defaults to `DEFAULT_AUTHOR` or `article.source?.name` if `article.author` is not available.
  */
-const mapArticle = (article: any, i: number): Article => ({
+interface NewsApiArticle {
+  source?: { name?: string };
+  author?: string;
+  title: string;
+  description: string;
+  url: string;
+  urlToImage?: string;
+  publishedAt: string;
+}
+
+const mapArticle = (article: NewsApiArticle, i: number): Article => ({
   id: `newsapi_${i}_${article.publishedAt}`,
   url: article.url,
   title: article.title,
