@@ -33,6 +33,17 @@
     npm run build
     npm start
 
+### Tests
+
+1. Client:
+   ```bash
+   cd client
+   npm test
+
+2. Backend:
+    ``` bash
+   cd backend
+   npm test
 
 ### 🔐 Environment Variables
 
