@@ -1,11 +1,11 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import Home from './pages/Home';
 import './styles/main.scss';
-import Favorites from './pages/Favorites';
-import VerifyEmail from './pages/VerifyEmail';
 import { SIDEBAR_ITEMS } from './components/Sidebar/sidebarItems';
 import Layout from './components/Layout/Layout';
 import AuthGuard from './utils/AuthGuard';
+import Favorites from './pages/Favorites/Favorites';
+import Home from './pages/Main/Main';
+import VerifyEmail from './pages/VerifyEmail/VerifyEmail';
 
 const AppRoutes = () => {
   return (
