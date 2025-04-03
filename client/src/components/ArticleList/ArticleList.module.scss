@@ -1,0 +1,30 @@
+@use '../../styles/variables' as *;
+
+.title {
+  margin: 0;
+  @include respond-sm {
+    display: none;
+  }
+}
+
+.container {
+  display: grid;
+  gap: $spacing-lg;
+  padding: $spacing-sm 0;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: min-content;
+  @include respond-md {
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-md;
+  }
+  @include respond-sm {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-md;
+  }
+  @include respond-xs {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-md;
+  }
+}

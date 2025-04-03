@@ -24,7 +24,9 @@ const mapBookmarks = (bookmarks: Bookmark[]): Map<string, Bookmark> => {
 
 const Layout = () => {
   const [articles, setArticles] = useState<Article[]>([]);
+  const [bookmarkedArticles, setBookmarkedArticles] = useState<Article[]>([]);
   const [categories, setCategories] = useState<string[]>([]);
+  const [loading, setLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [bookmarks, setBookmarks] = useState<Map<string, Bookmark>>(new Map());
   const { user } = useAuth();
@@ -41,6 +43,19 @@ const Layout = () => {
     }
   }, []);
 
+  // Fetch bookmarked articles
+  const fetchBookmarkedArticles = useCallback(async () => {
+    setLoading(true);
+    try {
+      const res = await api.get('/bookmarks/articles');
+      setBookmarkedArticles(res.data);
+    } catch (error) {
+      console.error('Error fetching articles:', error);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
   const fetchBookmarks = useCallback(async () => {
     try {
       const res = await api.get('/bookmarks');
@@ -49,6 +64,20 @@ const Layout = () => {
       console.error('Error fetching bookmarks:', error);
     }
   }, []);
+
+  const fetchInitialData = useCallback(async () => {
+    setLoading(true);
+    try {
+      if (user) {
+        await fetchBookmarks();
+      }
+      await fetchArticles();
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    } finally {
+      setLoading(false);
+    }
+  }, [fetchArticles, fetchBookmarks, user]);
 
   const toggleBookmark = useCallback(
     async (article: Article) => {
@@ -63,11 +92,8 @@ const Layout = () => {
   );
 
   useEffect(() => {
-    if (user) {
-      fetchBookmarks();
-    }
-    fetchArticles();
-  }, [fetchArticles, fetchBookmarks, user]);
+    fetchInitialData();
+  }, [fetchInitialData]);
 
   return (
     <>
@@ -81,13 +107,34 @@ const Layout = () => {
         <div className={styles.layout}>
           <Sidebar categories={categories} />
           <main className={styles.mainContent}>
-            <Outlet context={{ articles, searchQuery, bookmarks, toggleBookmark }} />
-            <LatestNewsWidget />
+            <Outlet
+              context={{
+                articles,
+                searchQuery,
+                bookmarks,
+                toggleBookmark,
+                loading,
+                fetchBookmarkedArticles,
+                bookmarkedArticles,
+              }}
+            />
           </main>
           <main className={styles.mobileMainContent}>
             <ArticleTabs
               latest={<LatestNewsWidget mobile />}
-              featured={<Outlet context={{ articles, searchQuery, bookmarks, toggleBookmark }} />}
+              featured={
+                <Outlet
+                  context={{
+                    loading,
+                    articles,
+                    searchQuery,
+                    bookmarks,
+                    toggleBookmark,
+                    fetchBookmarkedArticles,
+                    bookmarkedArticles,
+                  }}
+                />
+              }
             />
           </main>
           <Toast />
