@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useMemo } from 'react';
 import { Article } from '../../types/Article';
 import { useOutletContext, useParams } from 'react-router-dom';
-import { OutletContext } from '../Main/Main';
 import ArticleList from '../../components/ArticleList/ArticleList';
 import { FAVORITES } from '../../components/Sidebar/sidebarItems';
+import { OutletContext } from '../../components/Layout/Layout';
 
 const Favorites = () => {
   const {

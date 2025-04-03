@@ -1,19 +1,8 @@
 import { useOutletContext, useParams } from 'react-router-dom';
-import { Article } from '../../types/Article';
 import { HOME } from '../../components/Sidebar/sidebarItems';
-import { Bookmark } from '../../types/Bookmark';
 import Loader from '../../components/Loader/Loader';
 import ArticleList from '../../components/ArticleList/ArticleList';
-
-export type OutletContext = {
-  loading: boolean;
-  articles: Article[];
-  bookmarkedArticles: Article[];
-  searchQuery: string;
-  bookmarks: Map<string, Bookmark>;
-  toggleBookmark: (article: Article) => void;
-  fetchBookmarkedArticles: () => void;
-};
+import { OutletContext } from '../../components/Layout/Layout';
 
 const Home = () => {
   const { loading, articles, searchQuery, bookmarks, toggleBookmark } =

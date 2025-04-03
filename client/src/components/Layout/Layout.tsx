@@ -12,6 +12,16 @@ import LatestNewsWidget from '../LatestNewsWidget/LatestNewsWidget';
 import Toast from '../Toast/Toast';
 import ArticleTabs from '../ArticleTabs/ArticleTabs';
 
+export type OutletContext = {
+  loading: boolean;
+  articles: Article[];
+  bookmarkedArticles: Article[];
+  searchQuery: string;
+  bookmarks: Map<string, Bookmark>;
+  toggleBookmark: (article: Article) => void;
+  fetchBookmarkedArticles: () => void;
+};
+
 // Utility function to get unique categories
 const getUniqueCategories = (articles: Article[]): string[] => {
   return Array.from(new Set(articles.map((article) => article.category)));
