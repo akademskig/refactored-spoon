@@ -12,8 +12,8 @@
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-repo/news-app.git
-   cd news-app
+   git clone https://github.com/akademskig/refactored-spoon.git
+   cd refactored-spoon
 
 2. Run docker-compose to start MongoDB (runs on port 27018)
     ``` bash
