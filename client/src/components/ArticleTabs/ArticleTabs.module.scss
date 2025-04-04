@@ -31,19 +31,7 @@
       background: rgba($color-primary-rgb, 5%);
     }
   }
-}
-
-.featured {
-  padding: 0 0 $spacing-lg 0;
-  gap: $spacing-lg;
   @include respond-sm {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: $spacing-md;
-  }
-  @include respond-xs {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: $spacing-md;
+    margin-bottom: 0;
   }
 }

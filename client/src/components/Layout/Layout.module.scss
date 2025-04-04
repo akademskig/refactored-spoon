@@ -20,15 +20,7 @@
 }
 
 .mainContent {
-  display: grid;
-  gap: $spacing-lg;
   padding: 1.5rem 0;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  grid-template-rows: min-content;
-  @include respond-md {
-    grid-template-columns: 1fr 1fr;
-    gap: $spacing-md;
-  }
   @include respond-sm {
     display: none;
   }

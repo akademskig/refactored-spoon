@@ -27,6 +27,7 @@ $padding-root: $spacing-lg $spacing-xxs $spacing-sm $spacing-lg;
   }
   @include respond-sm {
     padding: $padding-root;
+    margin-top: $spacing-sm;
   }
 
   .scrollArea {
